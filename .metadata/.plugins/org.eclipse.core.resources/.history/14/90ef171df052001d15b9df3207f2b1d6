@@ -1,0 +1,76 @@
+package structures;
+import java.util.Arrays;
+public class Heap {
+	private  String[] heap ;
+
+	public Heap(String[] args) {
+		int n = args.length;
+		//heap = new String[n];
+		//heap = args;
+		//la derniere instruction ne va pas marcher si 
+		//on fait de heap un attribut final
+		//si on veut le rendre final on remplie chaque 
+		//position seule 
+		//heap = Arrays.copyOf(args, n);
+		heap=args.clone();
+		
+	}
+	private void swap(int i, int j) {
+		String m=heap[i];
+		heap[i]=heap[j];
+		heap[j]=m;
+	}
+	private void pullUp(int k) {
+		int i=k;
+		int pere=(i-2)/2;
+		while (i>1 && heap[i].compareTo(heap[pere])>0) {
+			swap(i, pere);
+			i=pere;
+			pere=(i-2)/2;
+			
+			
+		}
+	}
+	private void buildHeap() {
+		if (heap[1].compareTo(heap[0])>0) {
+			swap(0, 1);
+		}
+		for (int i=2;i< heap.length;i++) {
+			pullUp(i);
+			
+		}
+	}
+	private void pullDown(int i, int k) {
+		//la j'ai utilisé une methode iterative, la recursivité 
+		//reste un bon choix 
+		int pere =i;
+		int fg= 2*i+1;
+		int fd= 2*i+2;
+		while ((heap[fg].compareTo(heap[pere])>0 || heap[fd].compareTo(heap[pere])>0)&& fd<k) {
+			if (heap[fg].compareTo(heap[fd])>0) {
+				swap(pere, fg);
+				pere=fg;
+			}
+			else {
+				swap(pere, fd);
+				pere = fd;
+			}
+			fg= 2*pere+1;
+			fd= 2*pere+2;
+		}
+	}
+	private void pullDownRec(int i, int k) {
+		
+	}
+	private void sortHeap() {
+		for(int k=heap.length ; k>=2 ; k--) {
+			swap(0, k-1); //a voir pourquoi cet echange
+			pullDown(0, k-1);
+		}
+	}
+	public String[] sort() {
+		buildHeap();
+		sortHeap();
+		return heap.clone();
+	}
+}

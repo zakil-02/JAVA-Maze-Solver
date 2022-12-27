@@ -4,8 +4,10 @@ import graph.Vertex;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.File;
 
-public class Maze implements graph.Graph {
+public class Maze implements graph.Graph, graph.Distance{
 	private final int length;
 	private final int width;
 	private List<List<MazeBox>> boxes;
@@ -54,22 +56,77 @@ public class Maze implements graph.Graph {
 		
 		
 	}
-	public final static void initFromTextFile(String fileName) {
-		try
-		{
+	public final void initFromTextFile(String fileName) throws MazeReadingException, IOException{
+		
+		try{
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			String line= br.readLine();
+			int lineNumber =1;
+			while (line != null) {
+				if (line.length()!= width) {
+					 throw new MazeReadingException(fileName, lineNumber, "Width not respected");
+				}
+				int i=0;
+				while (i<width) {
+					String label=String.valueOf(line.charAt(i));
+					switch (label){
+					//il y a 4 cas : wall, empty, arrival ou departure.
+					case "W":
+						boxes.get(lineNumber-1).add(new WallBox(i, lineNumber, Maze.this));
+						break;
+					case "E":
+						boxes.get(lineNumber-1).add(new EmptyBox(i, lineNumber, Maze.this));
+						break;
+					case "A":
+						boxes.get(lineNumber-1).add(new ArrivalBox(i, lineNumber, Maze.this));	
+						break;
+					case "D":
+						boxes.get(lineNumber-1).add(new DepartureBox(i, lineNumber, Maze.this));
+						break;
+					default:
+						throw new MazeReadingException(fileName, lineNumber, "Invalid format");
+						
+					
+					}  
+					i++;                
+				}
+				line = br.readLine();
+				lineNumber++;
+			
+			}
+			if (lineNumber-1!=length) {
+				throw new MazeReadingException(fileName, lineNumber, "length not respected");
+			}
+			br.close();
+		}finally {}
+			
 			/**String line= br.readLine();
 			while (line != null) {
 				System.out.println(line);
 				line=br.readLine();
 			}
 			br.close();*/
-		}catch (IOException e) {
-			System.out.print("La lecture du fichier labyrinthe a échoué");
+		
+		
+		
+	}
+	public final void saveToTextFile(String fileName) {
+		try {
+			PrintWriter pw = new PrintWriter(new File(fileName));
+			for (int i=0;i<width;i++) {
+				String line="";
+				for (int k=0;k<width;k++) {
+					line.concat(boxes.get(i).get(k).getLabel());
+				}
+				pw.printf(line);
+				
+				
+			}
+			System.out.println("The file succussefully saved");
+		}catch (IOException e){
+			System.out.println("The file to save is invalid");
+			
 		}
-		
-		
-		
 	}
 	
 	

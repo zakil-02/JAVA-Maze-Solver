@@ -1,5 +1,4 @@
 package tp04;
-
 import java.io.IOException;
 import java.util.*;
 import Labyrinthe.*;

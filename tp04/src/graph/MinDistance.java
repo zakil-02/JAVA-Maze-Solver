@@ -1,7 +1,7 @@
 package graph;
 
 public interface MinDistance {
-	public MinDistance minDistance(Vertex v);
-	public void update(MinDistance d);
+	public int getDistance(Vertex v);
+	public void updateDistance(Vertex v, int d);
 
 }

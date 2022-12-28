@@ -1,12 +1,14 @@
 package graph;
 import java.util.*;
-import Labyrinthe.*;
 public class ProcessedVertexesImpl implements ProcessedVertexes {
-	private HashSet<MazeBox> ensembleSommets;
+	private HashSet<Vertex> processedVertexes;
 	@Override
 	public void addVertex(Vertex vertex) {
-		// TODO Auto-generated method stub
+		processedVertexes.add(vertex);
 		
+	}
+	public boolean containsVertex(Vertex vertex) {
+		return processedVertexes.contains(vertex);
 	}
 	
 

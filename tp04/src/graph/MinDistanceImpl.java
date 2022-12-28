@@ -1,20 +1,26 @@
 package graph;
-import java.util.HashMap;
-import Labyrinthe.MazeBox;
+import java.util.*;
 
 public class MinDistanceImpl implements MinDistance{
-	private HashMap<MazeBox, Integer> shortestPaths;
-
-	@Override
-	public MinDistance minDistance(Vertex v) {
-		// TODO Auto-generated method stub
-		return null;
+	private HashMap<Vertex, Integer> minDistance;
+	/*Definissons un constructeur qui initialise 
+	MinDistance avec un Set {vertex: infini pour tout vertex}*/
+	
+	public MinDistanceImpl(Set<Vertex> vertexes) {
+		HashMap<Vertex, Integer> emptyMap=new HashMap<>();
+		for (Vertex v:vertexes) {
+			emptyMap.put(v, 10000000);
+			
+		}
+		this.minDistance=emptyMap;
 	}
-
-	@Override
-	public void update(MinDistance d) {
-		// TODO Auto-generated method stub
-		
+	//getter de distance pour un sommet 
+	public int getDistance(Vertex v) {
+		return minDistance.get(v);
+	}
+	//mettre a jour la distance minimale d'un sommet
+	public void updateDistance(Vertex v, int d) {
+		minDistance.put(v, d);
 	}
 
 }

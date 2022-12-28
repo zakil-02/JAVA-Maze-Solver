@@ -1,7 +1,8 @@
-package Labyrinthe;
+package tp04;
 
 import java.io.IOException;
 import java.util.*;
+import Labyrinthe.*;
 
 public class MainTest {
 	public static void main(String[] args) throws MazeReadingException, IOException{

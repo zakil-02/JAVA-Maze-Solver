@@ -15,8 +15,12 @@ public class MinDistanceImpl implements MinDistance{
 		this.minDistance=emptyMap;
 	}
 	//getter de distance pour un sommet 
-	public int getDistance(Vertex v) {
+	public int getFor(Vertex v) {
 		return minDistance.get(v);
+	}
+	//getter de toute la HashMap
+	public HashMap<Vertex,Integer> getAll(){
+		return minDistance;
 	}
 	//mettre a jour la distance minimale d'un sommet
 	public void updateDistance(Vertex v, int d) {

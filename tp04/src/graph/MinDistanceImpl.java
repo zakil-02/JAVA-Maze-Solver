@@ -6,10 +6,10 @@ public class MinDistanceImpl implements MinDistance{
 	/*Definissons un constructeur qui initialise 
 	MinDistance avec un Set {vertex: infini pour tout vertex}*/
 	
-	public MinDistanceImpl(Set<Vertex> vertexes) {
+	public MinDistanceImpl(List<Vertex> vertexes) {
 		HashMap<Vertex, Integer> emptyMap=new HashMap<>();
 		for (Vertex v:vertexes) {
-			emptyMap.put(v, 10000000);
+			emptyMap.put(v, Integer.MAX_VALUE);
 			
 		}
 		this.minDistance=emptyMap;

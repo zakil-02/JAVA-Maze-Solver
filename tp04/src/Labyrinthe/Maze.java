@@ -22,20 +22,26 @@ public class Maze implements graph.Graph, graph.Distance{
 	public int getWidth() {
 		return width;
 	}
+	public List<List<MazeBox>> getBoxes(){
+		return boxes;
+	}
 	public ArrayList<Vertex> getSuccessors(Vertex s) {
 		MazeBox box =(MazeBox) s;
 		int x=box.getX();
 		int y=box.getY();
 		ArrayList<Vertex> boxSucc = new ArrayList<>();
-		int[] ids = {0,1,0,-1,-1,0,-1,1,1,1,1,0};
+		int[][] ids = {{0,1},{0,-1},{-1,0},{-1,1},{1,1},{1,0}};//Regroupement des moves possibles dans un labyrinthe hexagonal.
 		//c'est une liste qui va nous aider a preciser les 6 voisins de chaque box
-		for(int k=0;k<11;k++) {
-			int i =ids[k];
-			int j= ids[k+1];
-			if (i< length & j < width) {
+		for(int k=0;k<5;k++) {
+			int i =ids[k][0];
+			int j= ids[k][1];
+			if (i+x< length & j+y < width & box.getLabel()!="W") { //Toujours sous condition de ne pas sortir du labyrinthe et que le voisin n'est pas un mur.
 				boxSucc.add(boxes.get(x+i).get(y+j));
 			}
 		}
+		/* En effet, Si la liste des successeurs ne considere pas les WallBoxes, et le startVertex n'est pas un WallBox alors notre 
+		 * chemin ne va jamais contenir des wallBoxes. Cela nous decharge d'enlever les WallBoxes de la liste de AllVertexes
+		 * */
 		return boxSucc;
 		
 	}
@@ -54,10 +60,10 @@ public class Maze implements graph.Graph, graph.Distance{
 		/*getDistance ne va vraiment servir que s'il y avait 
 		  des poids, pour notre cas le poids est la fonction qui 
 		  associe 1 a chaque 2 sommets voisins.*/
-		if (departure !=arrival ) {
+		if (getSuccessors(departure).contains(arrival)) {
 			return 1;
 		}
-		return 0;
+		return Integer.MAX_VALUE;
 		
 		
 	}
@@ -71,6 +77,8 @@ public class Maze implements graph.Graph, graph.Distance{
 				if (line.length()!= width) {
 					 throw new MazeReadingException(fileName, lineNumber, "Width not respected");
 				}
+				int compteurDeparts = 0;// A utiliser pour compter le nombre de "D" dans le fichier.
+				int compteurArrivals =0;// A utiliser pour compter le nombre de "A" dans le fichier.
 				int i=0;
 				while (i<width) {
 					String label=String.valueOf(line.charAt(i));
@@ -84,15 +92,20 @@ public class Maze implements graph.Graph, graph.Distance{
 						break;
 					case "A":
 						boxes.get(lineNumber-1).add(new ArrivalBox(i, lineNumber, Maze.this));	
+						compteurArrivals++;
 						break;
 					case "D":
 						boxes.get(lineNumber-1).add(new DepartureBox(i, lineNumber, Maze.this));
+						compteurDeparts++;
 						break;
 					default:
 						throw new MazeReadingException(fileName, lineNumber, "Invalid format");
 						
 					
-					}  
+					}
+					//if (compteurDeparts!=1 || compteurArrivals!=1) {//Le programme supporte une seule destination et un seul depart!
+						//throw new IOException("Multiple destinations/ departures have been received");
+					//}
 					i++;                
 				}
 				line = br.readLine();

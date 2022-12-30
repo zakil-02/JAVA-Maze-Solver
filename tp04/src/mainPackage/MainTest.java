@@ -2,7 +2,6 @@ package mainPackage;
 import java.io.IOException;
 import java.util.*;
 import Labyrinthe.*;
-import graph.*;
 public class MainTest {
 	public static void main(String[] args) throws MazeReadingException, IOException{
 		//Creation d'un tableau pour representer l'attribut boxes de Maze.

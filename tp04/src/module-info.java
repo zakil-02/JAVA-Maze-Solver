@@ -1,10 +1,4 @@
-/**
- * 
- */
-/**
- * @author AKIL ZAKARIA
- *
- */
 module tp04 {
-	
+	exports Labyrinthe;
+	exports graph;
 }

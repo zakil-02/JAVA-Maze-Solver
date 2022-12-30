@@ -51,8 +51,13 @@ public class Maze implements graph.Graph, graph.Distance{
 		
 	}
 	public int getDistance(Vertex departure,Vertex arrival) {
-		MazeBox dpBox = (MazeBox) departure;
-		MazeBox arrBox = (MazeBox) arrival;
+		/*getDistance ne va vraiment servir que s'il y avait 
+		  des poids, pour notre cas le poids est la fonction qui 
+		  associe 1 a chaque 2 sommets voisins.*/
+		if (departure !=arrival ) {
+			return 1;
+		}
+		return 0;
 		
 		
 	}
@@ -100,7 +105,7 @@ public class Maze implements graph.Graph, graph.Distance{
 			br.close();
 		}finally {}
 			
-			/**String line= br.readLine();
+			/*String line= br.readLine();
 			while (line != null) {
 				System.out.println(line);
 				line=br.readLine();
@@ -110,20 +115,22 @@ public class Maze implements graph.Graph, graph.Distance{
 		
 		
 	}
+	/* On adoptera PrintWriter pour representer le labyrinthe
+	  sur un fichier
+	 */
 	public final void saveToTextFile(String fileName) {
 		try {
 			PrintWriter pw = new PrintWriter(new File(fileName));
-			for (int i=0;i<width;i++) {
-				String line="";
+			for (int i=0;i<length;i++) {
 				for (int k=0;k<width;k++) {
-					line.concat(boxes.get(i).get(k).getLabel());
+					pw.print(boxes.get(i).get(k).getLabel());
 				}
-				pw.printf(line);
-				
+				pw.println();//Pour sauter la ligne et garder la forme.
 				
 			}
+			pw.close();
 			System.out.println("The file succussefully saved");
-		}catch (IOException e){
+		}catch (Exception e){
 			System.out.println("The file to save is invalid");
 			
 		}

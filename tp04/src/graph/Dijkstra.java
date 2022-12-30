@@ -14,7 +14,7 @@ public class Dijkstra {
 		while(!(processedVertexes.containsVertex(endVertex))) {
 			for (Vertex succV: graph.getSuccessors(pivotVertex)) {
 				if (!(processedVertexes.containsVertex(succV))) {
-					int d=minDistance.getFor(pivotVertex)+distance.get(pivotVertex, succV);
+					int d=minDistance.getFor(pivotVertex)+distance.getDistance(pivotVertex, succV);
 					if (d<minDistance.getFor(succV)) {
 						minDistance.updateDistance(succV, d);
 						shortestPaths.setPrevious(succV, pivotVertex);

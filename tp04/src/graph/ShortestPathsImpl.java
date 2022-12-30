@@ -17,5 +17,15 @@ public class ShortestPathsImpl implements ShortestPaths{
 	public void setPrevious(Vertex pere, Vertex fils) {
 		previous.put(fils,pere);
 	}
+	public List<Vertex> getShortestPath(Vertex endVertex){
+		Vertex v=endVertex;
+		List<Vertex> courtChemin = new ArrayList<>();
+		while(v!=null) {
+			//la condition d'arret est equivalente a atteindre le sommet de depart
+			courtChemin.add(0, v);// C'est pour avoir un chemin Depart-....-Arrival
+			v=previous.get(v);
+		}
+		return courtChemin;
+	}
 
 }

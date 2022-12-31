@@ -2,40 +2,42 @@ package graph;
 import java.util.*;
 public class Dijkstra {
 	public static ShortestPaths dijkstra(Graph graph, Vertex startVertex, Vertex endVertex, ProcessedVertexes processedVertexes, MinDistance minDistance, Distance distance, ShortestPaths shortestPaths) {
-		processedVertexes.addVertex(startVertex);
-		Vertex pivotVertex = startVertex;
-		minDistance.updateDistance(startVertex, 0);
+		
+		
 		//Extraire la liste des sommets du graph
 		List<Vertex> sommets= graph.getAllVertexes();
+		//liste presentant les sommets non traités
+		List<Vertex> NotProcessedYet=sommets;
+		
+		processedVertexes.addVertex(startVertex);
+		Vertex pivotVertex = startVertex;///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		
+		NotProcessedYet.remove(startVertex);
 		for (Vertex v:sommets) {
-			minDistance.updateDistance(v, Integer.MAX_VALUE);
-			//Integer.MAX_VALUE modelise l'infini.
+			minDistance.updateDistance(v, 100000);//Integer.MAX_VALUE modelise l'infini.
 		}
+		minDistance.updateDistance(startVertex, 0);
 		while(!(processedVertexes.containsVertex(endVertex))) {
 			for (Vertex succV: graph.getSuccessors(pivotVertex)) {
 				if (!(processedVertexes.containsVertex(succV))) {
-					int d=minDistance.getFor(pivotVertex)+distance.getDistance(pivotVertex, succV);
-					if (d<minDistance.getFor(succV)) {
+					Integer d= minDistance.getFor(pivotVertex)+distance.getDistance(pivotVertex, succV);
+					System.out.println(d);
+					if (d<minDistance.getFor(succV)){
 						minDistance.updateDistance(succV, d);
-						shortestPaths.setPrevious(succV, pivotVertex);
+						shortestPaths.setPrevious(succV,pivotVertex);
 					}
 				}
 			}
 			//Cherchons le sommet nextV non traité de minDistance minimale
-			List<Vertex> NotProcessed=new ArrayList<>();
-			for (Vertex v:sommets) {
-				if (!(processedVertexes.containsVertex(v))) {
-					NotProcessed.add(v);
-				}
-			}
-			Vertex nextV = NotProcessed.get(0);
-			for (Vertex v:NotProcessed) {
+			Vertex nextV = NotProcessedYet.get(0);
+			for (Vertex v:NotProcessedYet) {
 				if(minDistance.getFor(v)<minDistance.getFor(nextV)) {
 					nextV=v;
 				}
 			}
 			pivotVertex=nextV;
 			processedVertexes.addVertex(pivotVertex);
+			NotProcessedYet.remove(pivotVertex);
 			
 		}
 		return shortestPaths;

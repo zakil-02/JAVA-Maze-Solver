@@ -11,6 +11,12 @@ public class ProcessedVertexesImpl implements ProcessedVertexes {
 		processedVertexes.add(vertex);
 		
 	}
+	public HashSet<Vertex> getAll(){
+		return processedVertexes;
+	}
+	public boolean containsAll(List<Vertex> l) {
+		return processedVertexes.containsAll(l);
+	}
 	public boolean containsVertex(Vertex vertex) {
 		return processedVertexes.contains(vertex);
 	}

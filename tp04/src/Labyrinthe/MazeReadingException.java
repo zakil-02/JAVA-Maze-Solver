@@ -9,7 +9,7 @@ public class MazeReadingException extends Exception{
 	private final String fileName;
 	private String errorMessage;
 	public MazeReadingException(String fileName, int Nline, String errorMessage) {
-		this.errorMessage=errorMessage;
+		super(errorMessage);
 		this.Nline=Nline;
 		this.fileName=fileName;
 		

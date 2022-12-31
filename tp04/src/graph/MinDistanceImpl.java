@@ -8,10 +8,10 @@ public class MinDistanceImpl implements MinDistance{
 	
 	public MinDistanceImpl(List<Vertex> vertexes) {
 		HashMap<Vertex, Integer> emptyMap=new HashMap<>();
-		for (Vertex v:vertexes) {
-			emptyMap.put(v, Integer.MAX_VALUE);
+		//for (Vertex v:vertexes) {
+			//emptyMap.put(v, 10000);
 			
-		}
+		//}
 		this.minDistance=emptyMap;
 	}
 	//getter de distance pour un sommet 

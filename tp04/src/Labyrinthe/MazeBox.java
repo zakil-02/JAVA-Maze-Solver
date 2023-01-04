@@ -18,6 +18,9 @@ public abstract class MazeBox implements graph.Vertex{
 	public int getY() {
 		return y;
 	}
+	public Maze getMaze() {
+		return maze;
+	}
 	public String getLabel() {
 		return label;
 		

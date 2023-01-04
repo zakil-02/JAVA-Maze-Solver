@@ -26,31 +26,62 @@ public class Maze implements graph.Graph, graph.Distance{
 		return boxes;
 	}
 	public ArrayList<Vertex> getSuccessors(Vertex s) {
-		MazeBox box =(MazeBox) s;
-		int x=box.getX();
-		int y=box.getY();
-		ArrayList<Vertex> boxSucc = new ArrayList<>();
-		//int[][] ids = {{0,1},{0,-1},{-1,0},{-1,1},{1,1},{1,0}};//Regroupement des moves possibles dans un labyrinthe hexagonal.
-		int[][] ids = {{0,1},{0,-1},{-1,0},{1,0}};
-		//c'est une liste qui va nous aider a preciser les 6 voisins de chaque box
-		for(int k=0;k<4;k++) {
-			int i =ids[k][0];
-			int j= ids[k][1];
-			if ((i+x< length) & (0<i+x) & (0<j+y) & (j+y < width) ) { 
-				MazeBox boxSuiv=boxes.get(x+i).get(y+j);
-				
-				if (boxSuiv.getLabel()!="W") {
-					boxSucc.add(boxSuiv);//Toujours sous condition de ne pas sortir du labyrinthe et que le voisin n'est pas un mur.
-				}
-				
-			}
-		}
-		/* En effet, Si la liste des successeurs ne considere pas les WallBoxes, et le startVertex n'est pas un WallBox alors notre 
-		 * chemin ne va jamais contenir des wallBoxes. Cela nous decharge d'enlever les WallBoxes de la liste de AllVertexes
-		 * */
-		return boxSucc;
+		/*
+		En effet, Si la liste des successeurs ne considere pas les WallBoxes, et le startVertex n'est pas un WallBox alors notre 
+		chemin ne va jamais contenir des wallBoxes. Cela nous decharge d'enlever les WallBoxes de la liste de AllVertexes
 		
+		Il y'en a 6 voisins à déterminer en fonction de la parité de i l'indice de la ligne.
+		*/
+		
+		ArrayList<Vertex> res = new ArrayList<Vertex>();
+		MazeBox box = (MazeBox) s ;
+		int i = box.getX();
+		int j = box.getY();
+		try {
+			MazeBox Neighbour1 = boxes.get(i).get(j-1);
+			if(Neighbour1.getLabel()!="W"){
+				res.add(Neighbour1);
+			}}catch( Exception e) {};
+		try {
+			MazeBox Neighbour2 = boxes.get(i).get(j+1);
+			if(Neighbour2.getLabel()!="W"){
+				res.add(Neighbour2);
+			}}catch( Exception e) {};	
+		try {
+			MazeBox Neighbour3 = boxes.get(i-1).get(j);
+			if(Neighbour3.getLabel()!="W"){
+				res.add(Neighbour3);
+			}}catch( Exception e) {};	
+		try {
+			MazeBox Neighbour4 = boxes.get(i+1).get(j);
+			if(Neighbour4.getLabel()!="W"){
+				res.add(Neighbour4);
+			}}catch( Exception e) {};
+		try {
+			MazeBox Neighbour5;
+			if (i%2==0) {
+				Neighbour5 = boxes.get(i-1).get(j-1);
+			}else {Neighbour5 = boxes.get(i-1).get(j+1);}
+			
+			if(Neighbour5.getLabel()!="W"){
+				res.add(Neighbour5);
+			}}catch( Exception e) {};
+		try {
+			MazeBox Neighbour6;
+			if (i%2==0) {
+				Neighbour6 = boxes.get(i+1).get(j-1);
+			}else {Neighbour6 = boxes.get(i+1).get(j+1);}
+			
+			if(Neighbour6.getLabel()!="W"){
+				res.add(Neighbour6);
+			}}catch( Exception e) {};
+	/*
+	 * J'ai adopté try pour ne pas sortir du labyrinthe ni tomber sur un WallBox plutot que de faire une instruction if qui 
+	 * va s'assurer de l'existence du voisin avant de l'appeler.		
+	 */
+	return res;
 	}
+	
 	public ArrayList<Vertex> getAllVertexes(){
 		ArrayList<Vertex> sommets = new ArrayList<>();
 		for (int i=0;i<length;i++) {

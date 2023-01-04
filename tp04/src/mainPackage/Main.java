@@ -9,11 +9,11 @@ public class Main {
 	public static void main(String[] args) throws MazeReadingException, Exception{
 		//Creation d'un tableau pour representer l'attribut boxes de Maze.
 		List<List<MazeBox>> boxes = new ArrayList<>();
-		for (int i=0; i<2;i++) {
+		for (int i=0; i<6;i++) {
 			boxes.add(new ArrayList<>());
 		}
 		//Creation de l'objet Maze
-		Maze maze = new Maze(2, 2, boxes);
+		Maze maze = new Maze(6,6, boxes);
 		maze.initFromTextFile("data/labyrinthe.maze");
 		List<Vertex> sommets=maze.getAllVertexes();
 		ShortestPaths sP = new ShortestPathsImpl(sommets);
@@ -42,8 +42,14 @@ public class Main {
 		}
 		sP = Dijkstra.dijkstra(graph,startVertex, endVertex, pV, mD, distance, sP);
 		List<Vertex> cheminSolution = sP.getShortestPath(endVertex);
-		System.out.println(pV.getAll());
+		System.out.println("Affichage des listes qui caracterise le chemin trouvé:");
+		System.out.printf(" Les sommets traités : %HashSet",pV.getAll());
+		System.out.println();
 		System.out.println(sP.getAll());
+		System.out.println("Chemin dans liste:");
+		System.out.println(cheminSolution);
+		System.out.println();
+		System.out.println("Le résultat:");
 		System.out.println();
 		//Affichage de la solution dans la console :
 		
@@ -51,12 +57,14 @@ public class Main {
 			for (int j=0;j<maze.getWidth();j++) {
 				MazeBox box = maze.getBoxes().get(i).get(j);
 				if (cheminSolution.contains(box)) {
-					System.out.print("*");//Tracage du chemin.
+					System.out.print("* ");//Tracage du chemin.
 				}else {
-					System.out.print(box.getLabel());
+					System.out.print(box.getLabel()+" ");
 				}
 			}
-			System.out.println();//Pour sauter la ligne et garder la forme.	
+			System.out.println();
+			if (i%2==0) {System.out.print(" ");}
+			//Tout cela pour construire la forme du labyrinthe hexagonal.	
 		}
 			
 	} 

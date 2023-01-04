@@ -1,11 +1,13 @@
-package ihm;
+package graphicInterface;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class JCPanel extends JPanel implements MouseListener {
-    public JCPanel() {
+    private static final long serialVersionUID = 1L;
+
+	public JCPanel() {
         super(); 
     }
     @Override

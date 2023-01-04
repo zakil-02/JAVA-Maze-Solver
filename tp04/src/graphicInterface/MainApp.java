@@ -1,15 +1,19 @@
-package ihm;
+package graphicInterface;
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-public class Main extends JFrame {
-    public static void main(String args[]) {
-        new Main();
+public class MainApp extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public static void main(String args[]) {
+        new MainApp();
         
     }
-    public Main() {
+    public MainApp() {
         super("Maze Game");
         MainPanel panel = new MainPanel();
 
@@ -53,4 +57,5 @@ public class Main extends JFrame {
         pack();
         setVisible(true);
     }
+
 }

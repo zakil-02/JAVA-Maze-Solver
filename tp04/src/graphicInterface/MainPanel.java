@@ -1,9 +1,12 @@
-package ihm;
+package graphicInterface;
 import javax.swing.*;
+
 import java.awt.*;
 
 public class MainPanel extends JPanel {
-    public MainPanel() {
+    private static final long serialVersionUID = 1L;
+
+	public MainPanel() {
         super();
         setBackground(Color.darkGray);
         setLayout(new BorderLayout());

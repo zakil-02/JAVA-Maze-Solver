@@ -39,22 +39,22 @@ public class Maze implements graph.Graph, graph.Distance{
 		int j = box.getY();
 		try {
 			MazeBox Neighbour1 = boxes.get(i).get(j-1);
-			if(Neighbour1.getLabel()!="W"){
+			if(!Neighbour1.getIsWall()){
 				res.add(Neighbour1);
 			}}catch( Exception e) {};
 		try {
 			MazeBox Neighbour2 = boxes.get(i).get(j+1);
-			if(Neighbour2.getLabel()!="W"){
+			if(!Neighbour2.getIsWall()){
 				res.add(Neighbour2);
 			}}catch( Exception e) {};	
 		try {
 			MazeBox Neighbour3 = boxes.get(i-1).get(j);
-			if(Neighbour3.getLabel()!="W"){
+			if(!Neighbour3.getIsWall()){
 				res.add(Neighbour3);
 			}}catch( Exception e) {};	
 		try {
 			MazeBox Neighbour4 = boxes.get(i+1).get(j);
-			if(Neighbour4.getLabel()!="W"){
+			if(!Neighbour4.getIsWall()){
 				res.add(Neighbour4);
 			}}catch( Exception e) {};
 		try {
@@ -63,7 +63,7 @@ public class Maze implements graph.Graph, graph.Distance{
 				Neighbour5 = boxes.get(i-1).get(j-1);
 			}else {Neighbour5 = boxes.get(i-1).get(j+1);}
 			
-			if(Neighbour5.getLabel()!="W"){
+			if(!Neighbour5.getIsWall()){
 				res.add(Neighbour5);
 			}}catch( Exception e) {};
 		try {
@@ -72,7 +72,7 @@ public class Maze implements graph.Graph, graph.Distance{
 				Neighbour6 = boxes.get(i+1).get(j-1);
 			}else {Neighbour6 = boxes.get(i+1).get(j+1);}
 			
-			if(Neighbour6.getLabel()!="W"){
+			if(!Neighbour6.getIsWall()){
 				res.add(Neighbour6);
 			}}catch( Exception e) {};
 	/*
@@ -154,16 +154,6 @@ public class Maze implements graph.Graph, graph.Distance{
 			e.printStackTrace();
 		}
 		finally {br.close();}
-			
-			/*String line= br.readLine();
-			while (line != null) {
-				System.out.println(line);
-				line=br.readLine();
-			}
-			br.close();*/
-		
-		
-		
 	}
 	/* On adoptera PrintWriter pour representer le labyrinthe
 	  sur un fichier

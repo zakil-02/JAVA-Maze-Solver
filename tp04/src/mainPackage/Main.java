@@ -42,14 +42,14 @@ public class Main {
 		}
 		sP = Dijkstra.dijkstra(graph,startVertex, endVertex, pV, mD, distance, sP);
 		List<Vertex> cheminSolution = sP.getShortestPath(endVertex);
-		System.out.println("Affichage des listes qui caracterise le chemin trouvé:");
-		System.out.printf(" Les sommets traités : %HashSet",pV.getAll());
+		System.out.println("Affichage des listes qui caracterise le chemin trouve:");
+		System.out.printf(" Les sommets traites : %HashSet",pV.getAll());
 		System.out.println();
 		System.out.println(sP.getAll());
 		System.out.println("Chemin dans liste:");
 		System.out.println(cheminSolution);
 		System.out.println();
-		System.out.println("Le résultat:");
+		System.out.println("Le resultat:");
 		System.out.println();
 		//Affichage de la solution dans la console :
 		

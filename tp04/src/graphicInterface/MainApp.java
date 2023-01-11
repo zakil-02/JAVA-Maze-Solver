@@ -49,7 +49,7 @@ public class MainApp extends JFrame{
         //Ajout d'une image comme fond 
         Container c =getContentPane();
         JLabel label =new JLabel();
-        label.setIcon(new ImageIcon("Maze.jpg"));
+        label.setIcon(new ImageIcon("telcomParisLogo.jpg"));
         Dimension size = label.getPreferredSize();
         label.setBounds(50, 30, size.width, size.height);
         c.add(label);

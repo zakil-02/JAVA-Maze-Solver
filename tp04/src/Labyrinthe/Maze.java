@@ -37,6 +37,7 @@ public class Maze implements graph.Graph, graph.Distance{
 		MazeBox box = (MazeBox) s ;
 		int i = box.getX();
 		int j = box.getY();
+		/*
 		try {
 			MazeBox Neighbour1 = boxes.get(i).get(j-1);
 			if(!Neighbour1.getIsWall()){
@@ -65,7 +66,8 @@ public class Maze implements graph.Graph, graph.Distance{
 			
 			if(!Neighbour5.getIsWall()){
 				res.add(Neighbour5);
-			}}catch( Exception e) {};
+			}
+			}catch( Exception e) {};
 		try {
 			MazeBox Neighbour6;
 			if (i%2==0) {
@@ -74,12 +76,68 @@ public class Maze implements graph.Graph, graph.Distance{
 			
 			if(!Neighbour6.getIsWall()){
 				res.add(Neighbour6);
-			}}catch( Exception e) {};
+			}
+			}catch( Exception e) {};*/
 	/*
 	 * J'ai adopté try pour ne pas sortir du labyrinthe ni tomber sur un WallBox plutot que de faire une instruction if qui 
 	 * va s'assurer de l'existence du voisin avant de l'appeler.		
 	 */
-	return res;
+		int rows=length;
+		int cols=width;
+		if (i > 0) {
+	        MazeBox neighbour = boxes.get(i-1).get(j);
+	        if (!neighbour.getIsWall()) {
+	            res.add(neighbour);
+	        }
+	    }
+	    if (i < rows - 1) {
+	        MazeBox neighbour = boxes.get(i+1).get(j);
+	        if (!neighbour.getIsWall()) {
+	            res.add(neighbour);
+	        }
+	    }
+	    if (j > 0) {
+	        MazeBox neighbour = boxes.get(i).get(j-1);
+	        if (!neighbour.getIsWall()) {
+	            res.add(neighbour);
+	        }
+	    }
+	    if (j < cols - 1) {
+	        MazeBox neighbour = boxes.get(i).get(j+1);
+	        if (!neighbour.getIsWall()) {
+	            res.add(neighbour);
+	        }
+	    }
+	    if (i % 2 == 0) {
+	        if (i > 0 && j > 0) {
+	            MazeBox neighbour = boxes.get(i-1).get(j-1);
+	            if (!neighbour.getIsWall()) {
+	                res.add(neighbour);
+	            }
+	        }
+	        if (i < rows - 1 && j > 0) {
+	            MazeBox neighbour = boxes.get(i+1).get(j-1);
+	            if (!neighbour.getIsWall()) {
+	                res.add(neighbour);
+	            }
+	        }
+	    }else {
+	    	if (i > 0 && j < cols - 1) {
+	            MazeBox neighbour = boxes.get(i-1).get(j+1);
+	            if (!neighbour.getIsWall()) {
+	                res.add(neighbour);
+	            }
+	        }
+	        if (i < rows - 1 && j < cols - 1) {
+	            MazeBox neighbour = boxes.get(i+1).get(j+1);
+	            if (!neighbour.getIsWall()) {
+	                res.add(neighbour);
+	            }
+	        }
+	    	
+	    } 
+	
+		return res;
 	}
 	
 	public ArrayList<Vertex> getAllVertexes(){

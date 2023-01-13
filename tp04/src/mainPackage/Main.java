@@ -50,7 +50,6 @@ public class Main {
 		System.out.println(cheminSolution);
 		System.out.println();
 		System.out.println("Le resultat:");
-		System.out.println();
 		//Affichage de la solution dans la console :
 		
 		for (int i=0;i<maze.getLength();i++) {

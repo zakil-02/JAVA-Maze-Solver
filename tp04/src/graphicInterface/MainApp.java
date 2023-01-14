@@ -15,7 +15,7 @@ public class MainApp extends JFrame{
     }
     public MainApp() {
         super("Maze Game");
-        MainPanel panel = new MainPanel();
+        MainPanel panel = new MainPanel(this);
 
         setContentPane(panel);
         //Ajout d'un menubar
@@ -46,14 +46,14 @@ public class MainApp extends JFrame{
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(dim.width/5 - getWidth()/5, dim.height/5 - getHeight()/5);
         
-        //Ajout d'une image comme fond 
+        /*Ajout d'une image comme fond 
         Container c =getContentPane();
         JLabel label =new JLabel();
         label.setIcon(new ImageIcon("telcomParisLogo.jpg"));
         Dimension size = label.getPreferredSize();
         label.setBounds(50, 30, size.width, size.height);
         c.add(label);
-        
+        */
         pack();
         setVisible(true);
     }

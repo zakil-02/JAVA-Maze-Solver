@@ -8,37 +8,22 @@ public class MainApp extends JFrame{
 	/**
 	 * 
 	 */
+	private MainPanel mainPanel;
+	private MazeMenuBar menuBar;
 	private static final long serialVersionUID = 1L;
+	//La methode main a exécuter
 	public static void main(String args[]) {
         new MainApp();
-        
     }
+	//Constructeur de l'application
     public MainApp() {
-        super("Maze Game");
-        MainPanel panel = new MainPanel(this);
-
-        setContentPane(panel);
-        //Ajout d'un menubar
-        JMenuBar mb = new JMenuBar();
-        setJMenuBar(mb);
+        super("Maze Solver");
+        mainPanel= new MainPanel(this);
+        menuBar=new MazeMenuBar(this);
+        //Ajouter ces attribut a l'affichage de la MainApp.
+        setContentPane(mainPanel);
+        setJMenuBar(menuBar);
         
-        //mettre des menus sur le menubar
-        JMenu menu1 = new JMenu("File");
-        JMenu menu2=new JMenu("setting");
-        JMenu menu3=new JMenu("help");
-        mb.add(menu1);
-        mb.add(menu2);
-        mb.add(menu3);
-        //mettre une option dans le menu1
-        JMenuItem menuItem = new JMenuItem("Quit");
-        menu1.add(menuItem);
-        menuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                System.exit(0);
-            }
-        });
-        
-        //
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(1000,600));
         

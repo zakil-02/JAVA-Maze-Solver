@@ -21,16 +21,20 @@ public class ChoiceBoxPanel extends JPanel{
 	public ChoiceBoxPanel(ConfigPanel configPanel) {
 		super();
 		this.configPanel=configPanel;
-		this.setLayout(new FlowLayout());
-		JLabel descriptionLabel=new JLabel("Choose what type of box you want to put in the maze: ");
+		this.setLayout(new BorderLayout());
+		JLabel descriptionLabel=new JLabel("<html>Choose what to put in<br>the maze: <html>");
 		descriptionLabel.setForeground(Color.white);
+		descriptionLabel.setFont(new Font("Arial", Font.BOLD, 14));
+	
 		this.add(descriptionLabel);
 		this.setLayout(new FlowLayout());
 		this.add(wButton= new BoxButton("Wall"));
 		this.add(aButton= new BoxButton("Arrival"));
 		this.add(eButton= new BoxButton("Empty"));
 		this.add(dButton= new BoxButton("Departure"));
-		this.add(pathButton= new ShowPathButton(mainApp));
+		this.add(pathButton= new ShowPathButton(mainApp), BorderLayout.SOUTH);
+		this.setPreferredSize(new Dimension(180, 200));
+		this.setBackground(Color.RED);
 		
 		
 	}

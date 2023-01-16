@@ -32,10 +32,12 @@ public class ConfigPanel extends JPanel{
 		
 		JLabel wLabel = new JLabel("Enter maze width: ");
 		wLabel.setForeground(Color.WHITE);
+		wLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		wLabel.setLabelFor(wField);
 		
 		JLabel hLabel = new JLabel("Enter maze height: ");
 		hLabel.setForeground(Color.WHITE);
+		hLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		hLabel.setLabelFor(hField);
 	
 		

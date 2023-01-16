@@ -5,6 +5,8 @@ import java.awt.*;
 
 public class MainPanel extends JPanel {
 	private final MainApp mainApp;
+	private ConfigPanel configPanel;
+	private JCPanel jcPanel;
     private static final long serialVersionUID = 1L;
 
 	public MainPanel(MainApp mainApp) {

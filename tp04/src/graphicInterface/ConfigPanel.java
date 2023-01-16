@@ -6,6 +6,7 @@ public class ConfigPanel extends JPanel{
 	private HeightField hField;
 	private WidthField wField;
 	private OkButton okButton; //Boutton de confirmation de choix 
+	private ChoiceBoxPanel cBoxPanel; // Le panel qui contient les differents types de boxes
 	
 	private static final long serialVersionUID = 1L;
 	public ConfigPanel(MainApp mainApp) {
@@ -45,6 +46,8 @@ public class ConfigPanel extends JPanel{
 		
 		okButton.setBackground(Color.PINK);
 		this.add(okButton, BorderLayout.LINE_END);
+		cBoxPanel= new ChoiceBoxPanel(this);
+		this.add(cBoxPanel);
 		
 		
 

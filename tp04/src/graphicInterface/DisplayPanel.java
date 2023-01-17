@@ -14,18 +14,19 @@ public class DisplayPanel extends JPanel{
         super();
         this.mainApp=mainApp;
         setBackground(Color.WHITE);
+        //La, on contruit une maze dont tous les boxes sont de type empty.
         map = new BoxShape[w][h];
-        
         float d1=27;
         float d2=15;
+        int l=0;
         for(int i=0;i<w;i++) {
+        	if (i>=2 && i%2==0) {
+					 l+=30;
+        	}
 			 for(int j=0;j<h;j++) {
-				//La, on contruit une maze dont tous les boxes sont de type empty.
-				 /*Le 7 sert à annuler l'espace entre chaque 2 boxes de meme ligne, on l'a fait entrer en facteur de i, 
-				 afin que cette translation ne s'applique pas pour i=0.*/
-				 
-				 if (i%2==0) {map[i][j]=new BoxShape(startPixel+j*(2*size-7) ,(int)(startPixel +i*2*size ),Color.PINK);}
-				 else {map[i][j]=new BoxShape((int)( startPixel +j*(2*size-7) + d1),(int)(startPixel +i*(2*size) - d2),Color.PINK);}
+				
+				 if (i%2==0) {map[i][j]=new BoxShape(startPixel+j*(2*size-7) ,(int)(startPixel +i*2*size -l ),Color.PINK);}
+				 else {map[i][j]=new BoxShape((int)( startPixel +j*(2*size-7) + d1),(int)(startPixel +i*(2*size) - d2-l),Color.PINK);}
 				 
 			 }
 		 }

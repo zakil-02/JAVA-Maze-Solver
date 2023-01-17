@@ -12,7 +12,7 @@ public class BoxShape extends Polygon{
 	 */
 	private static final long serialVersionUID = 1L;
 	//size of the box
-	private final int size=30;
+	private static final int size=30;
 	//color of the box
 	private Color color;
 	//Position (x,y) of the box
@@ -24,6 +24,14 @@ public class BoxShape extends Polygon{
 		this.x=x;
 		this.y=y;
 		this.color=color;
+		//Ajouter les 6 points au polygone pour construire l'hexagone
+		this.addPoint(x+size, y);
+		this.addPoint(x+dx(), y-dy());
+		this.addPoint(x-dx(), y-dy());
+		this.addPoint(x-size, y);
+		this.addPoint(x-dx(), y+dy());
+		this.addPoint(x+dx(), y+dy());
+		
 	}
 	private int[] getXarray() {
 		int[] xArray = {0,0,0,0,0,0}; //pour regrouper les x 
@@ -62,10 +70,10 @@ public class BoxShape extends Polygon{
 	}
 	
 	// les deltas pour aller d'un point de l'hexagone au point voisin.
-	public int dx() {
+	public static int dx() {
 		return (int) Math.round(Math.cos(Math.toRadians(60)) * size) ;
 	}
-	public int dy() {
+	public static int dy() {
 		return (int) Math.round(Math.sin(Math.toRadians(60)) * size) ;
 	}
 	
@@ -84,13 +92,5 @@ public class BoxShape extends Polygon{
 	public final void setColor(Color color) {
 		this.color = color;
 	}
-	
-	@Override
-	public void paintComponent(Graphics g) {
-		int[] xPoints = {size / 2, size, size, size / 2, 0, 0};
-	    int[] yPoints = {0, 0, size / 2, size, size / 2, 0};
-	    g.setColor(color);
-	    g.fillPolygon(xPoints, yPoints, 6);
-    }
 
 }

@@ -41,6 +41,25 @@ public class BoxShape extends Polygon{
 		
 		return xArray;
 	}
+	private int[] getYarray() {
+		int[] yArray = {0,0,0,0,0,0};// pour regrouper les y correspondants
+		//point1
+		yArray[0]=y;
+		
+		yArray[1]=y-dy();
+		
+		yArray[2]=y-dy();
+		
+		yArray[3]=y;
+		
+		yArray[4]=y+dy();
+		
+		yArray[5]=y+dy();
+		
+		return yArray;
+		
+		
+	}
 	
 	// les deltas pour aller d'un point de l'hexagone au point voisin.
 	public int dx() {

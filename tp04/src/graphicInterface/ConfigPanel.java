@@ -13,7 +13,10 @@ public class ConfigPanel extends JPanel{
 		super();
 		//normalement le size doit dependre du size de la fenetre.
 		setPreferredSize(new Dimension(200,600));
-		setBackground(Color.RED);
+		Color sc= Color.RED;
+		Color fc= Color.BLACK;
+		GradientPaint gradient=new GradientPaint(0,0,sc,100,100,fc);
+		setBackground(gradient.getColor1());
 		//Layout manager
 		this.setLayout(new FlowLayout());
 		//Insersion d'une icone à size modifié.
@@ -41,15 +44,16 @@ public class ConfigPanel extends JPanel{
 		hLabel.setLabelFor(hField);
 	
 		
-		this.add(wLabel, BorderLayout.PAGE_END);
+		this.add(wLabel);
 		this.add(wField);
 		this.add(hLabel);
 		this.add(hField);
 		
-		okButton.setBackground(Color.PINK);
-		this.add(okButton, BorderLayout.LINE_END);
+		this.add(okButton);
 		cBoxPanel= new ChoiceBoxPanel(this);
+		this.add(new JLabel("     "));
 		this.add(cBoxPanel);
+		
 		
 		
 

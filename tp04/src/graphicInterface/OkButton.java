@@ -1,4 +1,6 @@
 package graphicInterface;
+import java.awt.Color;
+
 import javax.swing.*;
 public class OkButton extends JButton{
 	
@@ -9,6 +11,8 @@ public class OkButton extends JButton{
 
 	public OkButton() {
 		super("OK");
+		this.setBackground(Color.DARK_GRAY);
+		this.setForeground(Color.WHITE);
 	}
 
 }

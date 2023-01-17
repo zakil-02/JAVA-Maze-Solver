@@ -32,8 +32,9 @@ public class ChoiceBoxPanel extends JPanel{
 		this.add(aButton= new BoxButton("Arrival"));
 		this.add(eButton= new BoxButton("Empty"));
 		this.add(dButton= new BoxButton("Departure"));
+		this.add(new JLabel("     "));//Pour sauter la ligne
 		this.add(pathButton= new ShowPathButton(mainApp), BorderLayout.SOUTH);
-		this.setPreferredSize(new Dimension(180, 200));
+		this.setPreferredSize(new Dimension(180, 300));
 		this.setBackground(Color.RED);
 		
 		

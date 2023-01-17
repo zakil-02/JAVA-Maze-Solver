@@ -15,6 +15,9 @@ public class MainPanel extends JPanel {
         setBackground(Color.white);
         setLayout(new BorderLayout());
         add(configPanel=new ConfigPanel(mainApp), BorderLayout.WEST);
-        add(displayPanel=new DisplayPanel(mainApp),BorderLayout.CENTER);
+        //Just for test
+        int width=8;
+        int height=12;
+        add(displayPanel=new DisplayPanel(mainApp,width,height),BorderLayout.CENTER);
     }
 }

@@ -25,11 +25,11 @@ public class BoxShape extends Polygon{
 		this.y=y;
 		this.color=color;
 		//Ajouter les 6 points au polygone pour construire l'hexagone
-		this.addPoint(x+size, y);
-		this.addPoint(x+dx(), y-dy());
-		this.addPoint(x-dx(), y-dy());
-		this.addPoint(x-size, y);
+		this.addPoint(x, y+size);
 		this.addPoint(x-dx(), y+dy());
+		this.addPoint(x-dx(), y-dy());
+		this.addPoint(x, y-size);
+		this.addPoint(x+dx(), y-dy());
 		this.addPoint(x+dx(), y+dy());
 		
 	}
@@ -71,10 +71,10 @@ public class BoxShape extends Polygon{
 	
 	// les deltas pour aller d'un point de l'hexagone au point voisin.
 	public static int dx() {
-		return (int) Math.round(Math.cos(Math.toRadians(60)) * size) ;
+		return (int) Math.round(Math.sin(Math.toRadians(60)) * size) ;
 	}
 	public static int dy() {
-		return (int) Math.round(Math.sin(Math.toRadians(60)) * size) ;
+		return (int) Math.round(Math.cos(Math.toRadians(60)) * size) ;
 	}
 	
 	
@@ -92,5 +92,7 @@ public class BoxShape extends Polygon{
 	public final void setColor(Color color) {
 		this.color = color;
 	}
+	
+	
 
 }

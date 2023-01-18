@@ -1,6 +1,7 @@
 package graphicInterface;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,8 @@ public class BoxButton extends JButton implements ActionListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	private final String boxLabel;
+	private boolean selected;
+	
 	public BoxButton(String boxLabel) {
 		super(boxLabel);
 		this.boxLabel=boxLabel;
@@ -34,6 +37,15 @@ public class BoxButton extends JButton implements ActionListener{
 				this.setBackground(Color.BLACK);
 				this.setForeground(Color.WHITE);
 		}
+	}
+	public final boolean isSelected() {
+		return selected;
+	}
+	public final void setSelected(boolean selected) {
+		this.selected = selected;
+		this.setBorder(new LineBorder(Color.GRAY, 2));
+		this.setBackground(Color.WHITE);
+		this.setForeground(Color.GRAY);
 	}
 	public final String getBoxLabel() {
 		return boxLabel;

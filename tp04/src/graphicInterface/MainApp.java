@@ -39,6 +39,11 @@ public class MainApp extends JFrame{
         label.setBounds(50, 30, size.width, size.height);
         c.add(label);
         */
+        
+        //Set an image for the application.
+        ImageIcon icon = new ImageIcon("logoGUI.png");
+        setIconImage(icon.getImage());
+        
         pack();
         setVisible(true);
     }

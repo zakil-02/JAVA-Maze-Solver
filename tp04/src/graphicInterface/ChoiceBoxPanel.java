@@ -1,6 +1,10 @@
 package graphicInterface;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.ActionListener;
 
 
 //cette classe est pour representer les types parmi lesquelles, on selectionne un.
@@ -10,6 +14,8 @@ public class ChoiceBoxPanel extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private JButton selectedType=null;
+	
 	private MainApp mainApp;
 	private final ConfigPanel configPanel;
 	private BoxButton wButton;
@@ -37,8 +43,51 @@ public class ChoiceBoxPanel extends JPanel{
 		this.setPreferredSize(new Dimension(180, 300));
 		this.setBackground(Color.RED);
 		
+		wButton.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	if (selectedType!=null) {selectedType.setSelected(false);}
+		    	
+		        wButton.setSelected(true);
+		        selectedType=wButton;
+		    }
+		});
+		dButton.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	if (selectedType!=null) {selectedType.setSelected(false);}
+		    	
+		        dButton.setSelected(true);
+		        selectedType=dButton;
+		        
+		    }
+		});
+		aButton.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	if (selectedType!=null) {selectedType.setSelected(false);}
+		    	
+		        aButton.setSelected(true);
+		        selectedType=aButton;
+		    }
+		});
+		eButton.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	if (selectedType!=null) {selectedType.setSelected(false);}
+		    	
+		        eButton.setSelected(true);
+		        selectedType=eButton;
+		        
+		    }
+		});
 		
+		//addActionListener(this);
 	}
+	
+	public final JButton getSelectedType() {
+		return selectedType;
+	}
+	public final void setSelectedType(JButton selectedType) {
+		this.selectedType = selectedType;
+	}
+	
 	public void notifyForUpdate() {
 		/*
 		wButton.notifyForUpdate();
@@ -46,7 +95,6 @@ public class ChoiceBoxPanel extends JPanel{
 		eButton.notifyForUpdate();
 		aButton.notifyForUpdate();
 		pathButton.notifyForUpdate(); */
-		repaint();
 	}
 
-}
+}	

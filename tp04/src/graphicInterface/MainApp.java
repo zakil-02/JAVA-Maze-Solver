@@ -60,7 +60,7 @@ public class MainApp extends JFrame implements ChangeListener{
 	//Cette méthode est censée redessiner la fenêtre en fonction du modèle MazeAppModel.
 	public void stateChanged(ChangeEvent e) {
 		// TODO Auto-generated method stub
-		
+		this.repaint();
 	}
 
 }

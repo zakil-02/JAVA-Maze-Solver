@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.*;
-
-public class BoxShape extends Polygon{
+import java.awt.event.*;
+public class BoxShape extends Polygon {
 
 	/**
 	 * 
@@ -31,7 +31,6 @@ public class BoxShape extends Polygon{
 		this.addPoint(x, y-size);
 		this.addPoint(x+dx(), y-dy());
 		this.addPoint(x+dx(), y+dy());
-		
 	}
 	private int[] getXarray() {
 		int[] xArray = {0,0,0,0,0,0}; //pour regrouper les x 
@@ -92,7 +91,6 @@ public class BoxShape extends Polygon{
 	public final void setColor(Color color) {
 		this.color = color;
 	}
-	
 	
 
 }

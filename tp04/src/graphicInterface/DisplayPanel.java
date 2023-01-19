@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class DisplayPanel extends JPanel{
+public class DisplayPanel extends JPanel implements MouseListener{
     private static final long serialVersionUID = 1L;
     private static final int startPixel=70;
     private static final int size=30;
@@ -31,6 +31,8 @@ public class DisplayPanel extends JPanel{
 			 }
 		 }
         //BoxShape box1=new BoxShape(40,40,Color.LIGHT_GRAY);
+        //Ajout du listener de la souris 
+        addMouseListener(this);
     }
 	 @Override
 	 public void paintComponent(Graphics g) {
@@ -50,16 +52,40 @@ public class DisplayPanel extends JPanel{
 	 public BoxShape[][] getMap(){
 		 return map;
 	 }
-	 /*
-	 public void drawMaze(int width, int height, Graphics g) {
-		 for(int i=0;i<width;i++) {
-			 for(int j=0;j<height;j++) {
-				 paintComponent(g);
-			 }
-		 }
-		 
-	 }*/
+	 
+	 public void mousePressed(MouseEvent e) {
+	    for (BoxShape[] lBox : map) {
+	    	for (BoxShape b:lBox) {
+	    		if (b.contains(e.getPoint())) {
+			        b.setColor(Color.BLACK); //Juste un test avant de laisser faire le Modele en changeant la couleur par la coleur du button selectioné
+			        repaint();
+			        
+	    	}
+	    }
+	      
+	      }
+	 }
 	 
 	 
-	 
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }

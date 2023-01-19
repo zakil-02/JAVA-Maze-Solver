@@ -6,13 +6,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BoxButton extends JButton implements ActionListener{
+public class BoxButton extends JButton{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final String boxLabel;
+	private String boxLabel;
 	private boolean selected;
 	
 	public BoxButton(String boxLabel) {
@@ -50,11 +50,6 @@ public class BoxButton extends JButton implements ActionListener{
 	}
 	public final String getBoxLabel() {
 		return boxLabel;
-	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		this.setSelected();
-		
 	}
 
 }

@@ -9,5 +9,8 @@ public class HeightField extends JTextField{
 	public HeightField() {
 		super(14);
 	}
+	public void notifyForUpdate() {
+		repaint();
+	}
 
 }

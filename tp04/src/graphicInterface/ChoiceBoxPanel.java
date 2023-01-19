@@ -39,6 +39,14 @@ public class ChoiceBoxPanel extends JPanel{
 		
 		
 	}
-	
+	public void notifyForUpdate() {
+		/*
+		wButton.notifyForUpdate();
+		dButton.notifyForUpdate();
+		eButton.notifyForUpdate();
+		aButton.notifyForUpdate();
+		pathButton.notifyForUpdate(); */
+		repaint();
+	}
 
 }

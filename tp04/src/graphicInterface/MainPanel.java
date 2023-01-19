@@ -1,4 +1,5 @@
 package graphicInterface;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -20,4 +21,8 @@ public class MainPanel extends JPanel {
         int height=12;
         add(displayPanel=new DisplayPanel(mainApp,width,height),BorderLayout.CENTER);
     }
+	
+	public void notifyForUpdate() {
+		   configPanel.notifyForUpdate() ;
+		}
 }

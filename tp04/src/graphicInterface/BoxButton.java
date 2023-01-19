@@ -18,6 +18,7 @@ public class BoxButton extends JButton implements ActionListener{
 	public BoxButton(String boxLabel) {
 		super(boxLabel);
 		this.boxLabel=boxLabel;
+		this.selected=false;
 		//On donne une taille pour les bouttons
 		this.setPreferredSize(new Dimension(80,50));
 		//On va choisir un coleur pour chaque boutton.
@@ -41,8 +42,8 @@ public class BoxButton extends JButton implements ActionListener{
 	public final boolean isSelected() {
 		return selected;
 	}
-	public final void setSelected(boolean selected) {
-		this.selected = selected;
+	public final void setSelected() {
+		this.selected = true;
 		this.setBorder(new LineBorder(Color.GRAY, 2));
 		this.setBackground(Color.WHITE);
 		this.setForeground(Color.GRAY);
@@ -52,6 +53,7 @@ public class BoxButton extends JButton implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		this.setSelected();
 		
 	}
 

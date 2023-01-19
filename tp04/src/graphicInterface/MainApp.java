@@ -1,13 +1,14 @@
 package graphicInterface;
 import javax.swing.*;
-
+import javax.swing.event.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-public class MainApp extends JFrame{
+import java.awt.event.*;
+public class MainApp extends JFrame implements ChangeListener{
 	/**
 	 * 
 	 */
+	private MazeAppModel mazeAppModel;
+	
 	private MainPanel mainPanel;
 	private MazeMenuBar menuBar;
 	private static final long serialVersionUID = 1L;
@@ -47,5 +48,19 @@ public class MainApp extends JFrame{
         pack();
         setVisible(true);
     }
+    
+    //Getters and setters.
+    public final MazeAppModel getMazeAppModel() {
+		return mazeAppModel;
+	}
+	public final void setMazeAppModel(MazeAppModel mazeAppModel) {
+		this.mazeAppModel = mazeAppModel;
+	}
+	@Override
+	//Cette méthode est censée redessiner la fenêtre en fonction du modèle MazeAppModel.
+	public void stateChanged(ChangeEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

@@ -14,5 +14,8 @@ public class OkButton extends JButton{
 		this.setBackground(Color.DARK_GRAY);
 		this.setForeground(Color.WHITE);
 	}
+	public void notifyForUpdate() {
+		repaint();
+	}
 
 }

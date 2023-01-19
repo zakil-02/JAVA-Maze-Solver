@@ -58,5 +58,11 @@ public class ConfigPanel extends JPanel{
 		
 
 	}
+	public void notifyForUpdate() {
+		   okButton.notifyForUpdate() ;
+		   cBoxPanel.notifyForUpdate() ;
+		   hField.notifyForUpdate() ;
+		   wField.notifyForUpdate() ;
+		}
 
 }

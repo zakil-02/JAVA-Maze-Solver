@@ -9,4 +9,7 @@ public class WidthField extends JTextField{
 	public WidthField() {
 		super(14);
 	}
+	public void notifyForUpdate() {
+		repaint();
+	}
 }

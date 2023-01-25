@@ -7,7 +7,7 @@ public class MainApp extends JFrame implements ChangeListener{
 	/**
 	 * 
 	 */
-	private MazeAppModel mazeAppModel;
+	private MazeAppModel mazeAppModel; //references vers le model
 	
 	private MainPanel mainPanel;
 	private MazeMenuBar menuBar;
@@ -60,7 +60,8 @@ public class MainApp extends JFrame implements ChangeListener{
 	//Cette méthode est censée redessiner la fenêtre en fonction du modèle MazeAppModel.
 	public void stateChanged(ChangeEvent e) {
 		// TODO Auto-generated method stub
-		this.repaint();
+		mainPanel.notifyForUpdate();
+		//this.repaint();
 	}
 
 }

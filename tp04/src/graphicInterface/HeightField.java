@@ -6,10 +6,12 @@ public class HeightField extends JTextField{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	public HeightField() {
+    private final MainApp mainApp;
+	public HeightField(MainApp mainApp) {
 		super(14);
+		this.mainApp=mainApp;
 		((AbstractDocument) this.getDocument()).setDocumentFilter(new NumericFilter());
+		this.setText("8");
 	
 	}
 	//On utilise une classe imbriqué pour construire un filtre de saisie de l'utilisateur, on ne considere que les chiffres de 0 à 9.

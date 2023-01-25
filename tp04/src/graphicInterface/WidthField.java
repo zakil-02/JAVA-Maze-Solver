@@ -7,10 +7,12 @@ public class WidthField extends JTextField{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	public WidthField() {
+	private final MainApp mainApp;
+	public WidthField(MainApp mainApp) {
 		super(14);
+		this.mainApp=mainApp;
 		((AbstractDocument) this.getDocument()).setDocumentFilter(new NumericFilter());
+		this.setText("8");
 	}
 	//On utilise une classe imbriqué pour construire un filtre de saisie de l'utilisateur, on ne considere que les chiffres de 0 à 9.
 		private class NumericFilter extends DocumentFilter {

@@ -6,6 +6,14 @@ public class ConfigPanel extends JPanel{
 	private MainApp mainApp;
 	private HeightField hField;
 	private WidthField wField;
+	public HeightField gethField() {
+		return hField;
+	}
+
+	public WidthField getwField() {
+		return wField;
+	}
+
 	private OkButton okButton; //Boutton de confirmation de choix 
 	private ChoiceBoxPanel cBoxPanel; // Le panel qui contient les differents types de boxes
 	
@@ -31,8 +39,8 @@ public class ConfigPanel extends JPanel{
 		JLabel iconlabel = new JLabel(icon);
 		this.add(iconlabel);
 		
-		hField=new HeightField();
-		wField=new WidthField();
+		hField=new HeightField(mainApp);
+		wField=new WidthField(mainApp);
 		okButton= new OkButton(mainApp);
 		
 		JLabel wLabel = new JLabel("Enter maze width: ");
@@ -60,6 +68,7 @@ public class ConfigPanel extends JPanel{
 		
 
 	}
+	
 	public void notifyForUpdate() {
 		   okButton.notifyForUpdate() ;
 		   cBoxPanel.notifyForUpdate() ;

@@ -65,6 +65,9 @@ public class DisplayPanel extends JPanel implements MouseListener{
 	      
 	      }
 	 }
+	 public void notifyForUpdate() {
+		   repaint();
+		}
 	 
 	 
 

@@ -20,6 +20,7 @@ public class MainApp extends JFrame implements ChangeListener{
     public MainApp() {
         super("Maze Solver");
         mazeAppModel=new MazeAppModel();
+        mazeAppModel.addObserver(this);
         mainPanel= new MainPanel(this);
         menuBar=new MazeMenuBar(this);
         //Ajouter ces attribut a l'affichage de la MainApp.
@@ -51,18 +52,17 @@ public class MainApp extends JFrame implements ChangeListener{
     }
     
     //Getters and setters.
-    public final MazeAppModel getMazeAppModel() {
+    public MazeAppModel getMazeAppModel() {
 		return mazeAppModel;
 	}
-	public final void setMazeAppModel(MazeAppModel mazeAppModel) {
+	public void setMazeAppModel(MazeAppModel mazeAppModel) {
 		this.mazeAppModel = mazeAppModel;
 	}
+	public MainPanel getMainPanel() {return mainPanel;} 
 	@Override
 	//Cette méthode est censée redessiner la fenêtre en fonction du modèle MazeAppModel.
 	public void stateChanged(ChangeEvent e) {
-		// TODO Auto-generated method stub
 		mainPanel.notifyForUpdate();
-		//this.repaint();
 	}
 
 }

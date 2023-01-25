@@ -17,12 +17,16 @@ public class MainPanel extends JPanel {
         setLayout(new BorderLayout());
         add(configPanel=new ConfigPanel(mainApp), BorderLayout.WEST);
         
-        int width=mainApp.getMazeAppModel().getWidth(); //Le model nous donne les dimensions.
-        int height=mainApp.getMazeAppModel().getHeight();
+        int width = mainApp.getMazeAppModel().getWidth(); //Le model nous donne les dimensions.
+        int height = mainApp.getMazeAppModel().getHeight();
         add(displayPanel=new DisplayPanel(mainApp,width,height),BorderLayout.CENTER);
     }
 	
+	public ConfigPanel getConfigPanel() {return configPanel;}
+	
 	public void notifyForUpdate() {
 		   configPanel.notifyForUpdate() ;
+		   displayPanel.notifyForUpdate();
+		   repaint();
 		}
 }

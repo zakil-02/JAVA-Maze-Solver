@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ConfigPanel extends JPanel{
+	private MainApp mainApp;
 	private HeightField hField;
 	private WidthField wField;
 	private OkButton okButton; //Boutton de confirmation de choix 
@@ -11,6 +12,7 @@ public class ConfigPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public ConfigPanel(MainApp mainApp) {
 		super();
+		this.mainApp=mainApp;
 		//normalement le size doit dependre du size de la fenetre.
 		setPreferredSize(new Dimension(200,600));
 		Color sc= Color.RED;
@@ -31,7 +33,7 @@ public class ConfigPanel extends JPanel{
 		
 		hField=new HeightField();
 		wField=new WidthField();
-		okButton= new OkButton();
+		okButton= new OkButton(mainApp);
 		
 		JLabel wLabel = new JLabel("Enter maze width: ");
 		wLabel.setForeground(Color.WHITE);

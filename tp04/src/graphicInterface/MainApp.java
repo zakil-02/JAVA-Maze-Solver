@@ -19,6 +19,7 @@ public class MainApp extends JFrame implements ChangeListener{
 	//Constructeur de l'application
     public MainApp() {
         super("Maze Solver");
+        mazeAppModel=new MazeAppModel();
         mainPanel= new MainPanel(this);
         menuBar=new MazeMenuBar(this);
         //Ajouter ces attribut a l'affichage de la MainApp.

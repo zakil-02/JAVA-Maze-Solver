@@ -16,9 +16,9 @@ public class MainPanel extends JPanel {
         setBackground(Color.white);
         setLayout(new BorderLayout());
         add(configPanel=new ConfigPanel(mainApp), BorderLayout.WEST);
-        //Just for test//////////////////////////////////////////////////////////////////////////
-        int width=50;
-        int height=50;
+        
+        int width=mainApp.getMazeAppModel().getWidth(); //Le model nous donne les dimensions.
+        int height=mainApp.getMazeAppModel().getHeight();
         add(displayPanel=new DisplayPanel(mainApp,width,height),BorderLayout.CENTER);
     }
 	

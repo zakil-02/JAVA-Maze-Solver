@@ -27,63 +27,19 @@ public class Maze implements graph.Graph, graph.Distance{
 	}
 	public ArrayList<Vertex> getSuccessors(Vertex s) {
 		/*
-		En effet, Si la liste des successeurs ne considere pas les WallBoxes, et le startVertex n'est pas un WallBox alors notre 
-		chemin ne va jamais contenir des wallBoxes. Cela nous decharge d'enlever les WallBoxes de la liste de AllVertexes
+		Si la liste des successeurs ne considère pas les WallBoxes, et le startVertex n'est pas un WallBox alors notre 
+		chemin ne va jamais contenir des wallBoxes. Cela nous décharge d'enlever les WallBoxes de la liste de AllVertexes.
 		
 		Il y'en a 6 voisins à déterminer en fonction de la parité de i l'indice de la ligne.
 		*/
 		
 		ArrayList<Vertex> res = new ArrayList<Vertex>();
-		MazeBox box = (MazeBox) s ;
-		int i = box.getX();
-		int j = box.getY();
-		/*
-		try {
-			MazeBox Neighbour1 = boxes.get(i).get(j-1);
-			if(!Neighbour1.getIsWall()){
-				res.add(Neighbour1);
-			}}catch( Exception e) {};
-		try {
-			MazeBox Neighbour2 = boxes.get(i).get(j+1);
-			if(!Neighbour2.getIsWall()){
-				res.add(Neighbour2);
-			}}catch( Exception e) {};	
-		try {
-			MazeBox Neighbour3 = boxes.get(i-1).get(j);
-			if(!Neighbour3.getIsWall()){
-				res.add(Neighbour3);
-			}}catch( Exception e) {};	
-		try {
-			MazeBox Neighbour4 = boxes.get(i+1).get(j);
-			if(!Neighbour4.getIsWall()){
-				res.add(Neighbour4);
-			}}catch( Exception e) {};
-		try {
-			MazeBox Neighbour5;
-			if (i%2==0) {
-				Neighbour5 = boxes.get(i-1).get(j-1);
-			}else {Neighbour5 = boxes.get(i-1).get(j+1);}
-			
-			if(!Neighbour5.getIsWall()){
-				res.add(Neighbour5);
-			}
-			}catch( Exception e) {};
-		try {
-			MazeBox Neighbour6;
-			if (i%2==0) {
-				Neighbour6 = boxes.get(i+1).get(j-1);
-			}else {Neighbour6 = boxes.get(i+1).get(j+1);}
-			
-			if(!Neighbour6.getIsWall()){
-				res.add(Neighbour6);
-			}
-			}catch( Exception e) {};*/
-	/*
-	 * J'ai adopté try pour ne pas sortir du labyrinthe ni tomber sur un WallBox plutot que de faire une instruction if qui 
-	 * va s'assurer de l'existence du voisin avant de l'appeler.		
-	 */
+		MazeBox box = (MazeBox) s;
+		int j = box.getX();  //par définition, abscisse --> colonnes et ordonnées --> lignes
+		int i = box.getY();
 		int rows=length;
 		int cols=width;
+		//On ajoute en cas de validité les 4 voisins qui ne dépendent pas de la parité de i. 
 		if (i > 0) {
 	        MazeBox neighbour = boxes.get(i-1).get(j);
 	        if (!neighbour.getIsWall()) {
@@ -102,12 +58,14 @@ public class Maze implements graph.Graph, graph.Distance{
 	            res.add(neighbour);
 	        }
 	    }
-	    if (j < cols - 1) {
+	    if (j < cols - 1 ) {
 	        MazeBox neighbour = boxes.get(i).get(j+1);
 	        if (!neighbour.getIsWall()) {
 	            res.add(neighbour);
 	        }
 	    }
+	    
+	    //Pour les 2 voisins qui restent, ils dépendent de la parité de i. 
 	    if (i % 2 == 0) {
 	        if (i > 0 && j > 0) {
 	            MazeBox neighbour = boxes.get(i-1).get(j-1);
@@ -135,10 +93,11 @@ public class Maze implements graph.Graph, graph.Distance{
 	            }
 	        }
 	    	
-	    } 
+	    }
 	
 		return res;
 	}
+	
 	
 	public ArrayList<Vertex> getAllVertexes(){
 		ArrayList<Vertex> sommets = new ArrayList<>();
@@ -180,17 +139,17 @@ public class Maze implements graph.Graph, graph.Distance{
 					switch (label){
 					//il y a 4 cas : wall, empty, arrival ou departure.
 					case "W":
-						boxes.get(lineNumber-1).add(new WallBox(i, lineNumber, Maze.this));
+						boxes.get(lineNumber-1).add(new WallBox(i, lineNumber-1, Maze.this));
 						break;
 					case "E":
-						boxes.get(lineNumber-1).add(new EmptyBox(i, lineNumber, Maze.this));
+						boxes.get(lineNumber-1).add(new EmptyBox(i, lineNumber-1, Maze.this));
 						break;
 					case "A":
-						boxes.get(lineNumber-1).add(new ArrivalBox(i, lineNumber, Maze.this));	
+						boxes.get(lineNumber-1).add(new ArrivalBox(i, lineNumber-1, Maze.this));	
 						compteurArrivals++;
 						break;
 					case "D":
-						boxes.get(lineNumber-1).add(new DepartureBox(i, lineNumber, Maze.this));
+						boxes.get(lineNumber-1).add(new DepartureBox(i, lineNumber-1, Maze.this));
 						compteurDeparts++;
 						break;
 					default:

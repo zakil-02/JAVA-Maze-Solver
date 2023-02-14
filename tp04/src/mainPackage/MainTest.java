@@ -10,7 +10,7 @@ public class MainTest {
 			boxes.add(new ArrayList<>());
 		}
 		//Creation de l'objet Maze
-		Maze maze = new Maze(10, 10, boxes);
+		Maze maze = new Maze(6, 6, boxes);
 		maze.initFromTextFile("data/labyrinthe.maze");
 		maze.saveToTextFile("data/labyrinthe2.maze");
 		

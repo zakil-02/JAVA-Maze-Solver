@@ -21,7 +21,7 @@ public class BoxButton extends JButton{
 		this.selected=false;
 		//On donne une taille pour les bouttons
 		this.setPreferredSize(new Dimension(80,50));
-		//On va choisir un coleur pour chaque boutton.
+		//On va choisir une couleur pour chaque boutton.
 		switch (this.boxLabel) {
 		
 			case("Arrival"):

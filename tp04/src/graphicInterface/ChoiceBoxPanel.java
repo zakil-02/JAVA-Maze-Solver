@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 
 //cette classe est pour representer les types parmi lesquelles, on selectionne un.
-public class ChoiceBoxPanel extends JPanel{
+public class ChoiceBoxPanel extends JPanel {
 
 	/**
 	 * 
@@ -43,42 +43,45 @@ public class ChoiceBoxPanel extends JPanel{
 		this.setPreferredSize(new Dimension(180, 300));
 		this.setBackground(Color.RED);
 		
+		
 		wButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	if (selectedType!=null) {selectedType.setSelected(false);}
+		    	if (selectedType!=null) {selectedType.setEnabled(true);}
 		    	
-		        wButton.setSelected(true);
-		        selectedType=wButton;
-		    }
+		        wButton.setEnabled(false);
+		        selectedType=wButton;		    }
 		});
 		dButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	if (selectedType!=null) {selectedType.setSelected(false);}
+		    	if (selectedType!=null) {selectedType.setEnabled(true);}
 		    	
-		        dButton.setSelected(true);
+		        dButton.setEnabled(false);
 		        selectedType=dButton;
 		        
 		    }
 		});
 		aButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	if (selectedType!=null) {selectedType.setSelected(false);}
+		    	if (selectedType!=null) {selectedType.setEnabled(true);}
 		    	
-		        aButton.setSelected(true);
+		        aButton.setEnabled(false);
 		        selectedType=aButton;
 		    }
 		});
 		eButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	if (selectedType!=null) {selectedType.setSelected(false);}
+		    	if (selectedType!=null) {selectedType.setEnabled(true);}
 		    	
-		        eButton.setSelected(true);
+		        eButton.setEnabled(false);
 		        selectedType=eButton;
 		        
 		    }
 		});
-		
-		//addActionListener(this);
+		pathButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				mainApp.getMazeAppModel().solve();
+			}
+		});
 	}
 	
 	public final JButton getSelectedType() {
@@ -89,12 +92,10 @@ public class ChoiceBoxPanel extends JPanel{
 	}
 	
 	public void notifyForUpdate() {
-		/*
-		wButton.notifyForUpdate();
-		dButton.notifyForUpdate();
-		eButton.notifyForUpdate();
-		aButton.notifyForUpdate();
-		pathButton.notifyForUpdate(); */
-	}
-
-}	
+		
+		wButton.repaint();
+		dButton.repaint();
+		eButton.repaint();
+		aButton.repaint();
+		pathButton.repaint(); 
+	}}

@@ -10,9 +10,11 @@ public class DisplayPanel extends JPanel implements MouseListener{
     private static final int size=30;
     private final MainApp mainApp;
     private BoxShape[][] map;
-	public DisplayPanel(MainApp mainApp, int w, int h) {
+	public DisplayPanel(MainApp mainApp) {
         super();
         this.mainApp=mainApp;
+        int w = mainApp.getMazeAppModel().getWidth();
+        int h = mainApp.getMazeAppModel().getHeight();
         setBackground(Color.WHITE);
         //La, on contruit une maze dont tous les boxes sont de type empty.
         map = new BoxShape[w][h];

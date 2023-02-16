@@ -14,16 +14,18 @@ public class BoxShape extends Polygon {
 	//size of the box
 	private static final int size=30;
 	//color of the box
-	private Color color;
+	private final Color color;
 	//Position (x,y) of the box
+	private final String label;
 	private final int x;
 	private final int y;
 	
-	public BoxShape(int x, int y, Color color) {
+	public BoxShape(int x, int y, String label, Color color) {
 		super();
 		this.x=x;
 		this.y=y;
 		this.color=color;
+		this.label=label;
 		//Ajouter les 6 points au polygone pour construire l'hexagone
 		this.addPoint(x, y+size);
 		this.addPoint(x-dx(), y+dy());
@@ -87,9 +89,8 @@ public class BoxShape extends Polygon {
 	public final Color getColor() {
 		return color;
 	}
-	//setters
-	public final void setColor(Color color) {
-		this.color = color;
+	public String getLabel() {
+		return label;
 	}
 	
 

@@ -31,7 +31,6 @@ public class OkButton extends JButton implements ActionListener{
 		//On demande au model de changer les valeurs;
 		mainApp.getMazeAppModel().setWidth(width);
 		mainApp.getMazeAppModel().setHeight(heigth);
-
 	}
 
 }

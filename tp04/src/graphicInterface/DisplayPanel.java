@@ -7,8 +7,6 @@ import java.nio.channels.SelectableChannel;
 
 public class DisplayPanel extends JPanel implements MouseListener{
     private static final long serialVersionUID = 1L;
-    private static final int startPixel=70;
-    private static final int size=30;
     private final MainApp mainApp;
     //private BoxShape[][] map;
 	public DisplayPanel(MainApp mainApp) {
@@ -67,8 +65,6 @@ public class DisplayPanel extends JPanel implements MouseListener{
 			    				map[i][j] = new EmptyShape(s.getX(), s.getY());
 				    			repaint();
 			    				break;
-			    			default:
-			    				map[i][j] = new ArrivalShape(s.getX(), s.getY());
 		    			}
 	    			}
 	    			

@@ -100,55 +100,15 @@ public class MazeAppModel {
 		Maze maze = new Maze(width,height, map);
 		//Initialisons maze avec notre fichier text
 		maze.initFromTextFile("processingData/ActualMaze");
-		//List de tous les sommets
-		List<Vertex> sommets=maze.getAllVertexes();
-		//Instance de ShortestPath
-		ShortestPaths sP = new ShortestPathsImpl(sommets);
-		//Instance de ProcessedVertexes
-		ProcessedVertexes pV= new ProcessedVertexesImpl(maze.getLength()*maze.getWidth());
-		//Instance de MinDistance
-		MinDistance mD = new MinDistanceImpl(sommets);
-		//casting de maze comme Distance
-		Distance distance=(Distance) maze;
-		//Casting de maze comme graph
-		Graph graph = (Graph) maze;
 		
-		
-		
-		
-		//Recherche du sommet de depart et du sommet d'arrivée:
-		Vertex startVertex=sommets.get(0);// Cette valeur est arbitraire apres on cherchera le vrai startVertex.
-		Vertex endVertex=sommets.get(1);// Cette valeur est arbitraire apres on cherchera le vrai endVertex.
-		//Je n'ai pas fais de try car j'ai déja programmer une exception qui se lève si le fichier ne contient pas un unique D et un unique A.
-		boolean sFlag=false, eFlag = false;
-		int k=0;
-		while (!(sFlag & eFlag) & k<sommets.size()) {
-			Vertex s=sommets.get(k);
-			if (s.getLabel()=="D") {
-				startVertex=s;
-				sFlag=true;
-			}
-			if (s.getLabel()=="A") {
-				endVertex=s;
-				eFlag=true;
-			}
-			k++;
-		}
-		
-		//Application de l'algorithme de Dijkstra
-		sP = Dijkstra.dijkstra(graph,startVertex, endVertex, pV, mD, distance, sP);
-		//Extraction du chemin solution.
-		List<Vertex> cheminSolution = sP.getShortestPath(endVertex);
+		List<Vertex> cheminSolution = maze.getSolution().subList(1, maze.getSolution().size()-1);
 		
 		for (Vertex vertex:cheminSolution) {
+			MazeBox mb=(MazeBox) vertex;
+			int i=mb.getY();
+			int j=mb.getX();
 			
-			if (!vertex.equals(startVertex) && !vertex.equals(endVertex)) {
-				MazeBox mb=(MazeBox) vertex;
-				int i=mb.getY();
-				int j=mb.getX();
-				
-				boxes[i][j].setColor(Color.red);
-				}
+			boxes[i][j].setColor(Color.DARK_GRAY);
 			
 		}
 		stateChanges();

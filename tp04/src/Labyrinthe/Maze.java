@@ -1,5 +1,15 @@
 package Labyrinthe;
 import java.util.*;
+
+import graph.Dijkstra;
+import graph.Distance;
+import graph.Graph;
+import graph.MinDistance;
+import graph.MinDistanceImpl;
+import graph.ProcessedVertexes;
+import graph.ProcessedVertexesImpl;
+import graph.ShortestPaths;
+import graph.ShortestPathsImpl;
 import graph.Vertex;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -192,6 +202,48 @@ public class Maze implements graph.Graph, graph.Distance{
 			
 		}
 	}
+	
+	public List<Vertex> getSolution() {
+			
+		//List de tous les sommets
+		List<Vertex> sommets=getAllVertexes();
+		//Instance de ShortestPath
+		ShortestPaths sP = new ShortestPathsImpl(sommets);
+		//Instance de ProcessedVertexes
+		ProcessedVertexes pV= new ProcessedVertexesImpl(getLength()*getWidth());
+		//Instance de MinDistance
+		MinDistance mD = new MinDistanceImpl(sommets);
+		//casting de maze comme Distance
+		Distance distance=(Distance) this;
+		//Casting de maze comme graph
+		Graph graph = (Graph) this;
+		
+		//Recherche du sommet de depart et du sommet d'arrivée:
+		Vertex startVertex=sommets.get(0);// Cette valeur est arbitraire apres on cherchera le vrai startVertex.
+		Vertex endVertex=sommets.get(1);// Cette valeur est arbitraire apres on cherchera le vrai endVertex.
+		//Je n'ai pas fais de try car j'ai déja programmer une exception qui se lève si le fichier ne contient pas un unique D et un unique A.
+		boolean sFlag=false, eFlag = false;
+		int k=0;
+		while (!(sFlag & eFlag) & k<sommets.size()) {
+			Vertex s=sommets.get(k);
+			if (s.getLabel()=="D") {
+				startVertex=s;
+				sFlag=true;
+			}
+			if (s.getLabel()=="A") {
+				endVertex=s;
+				eFlag=true;
+			}
+			k++;
+		}
+			
+		//Application de l'algorithme de Dijkstra
+		sP = Dijkstra.dijkstra(graph,startVertex, endVertex, pV, mD, distance, sP);
+		//Extraction du chemin solution.
+		List<Vertex> cheminSolution = sP.getShortestPath(endVertex);
+		return cheminSolution;
+			
+		}
 	
 	
 	

@@ -11,8 +11,10 @@ public class MazeMenuBar extends JMenuBar{
 	private final JMenu fileMenu;
 	private final JMenu optionMenu;
 	private final JMenu helpMenu;
+	private final MainApp mainApp;
 	public MazeMenuBar(MainApp mainApp) {
 		super();
+		this.mainApp=mainApp;
 		//add ces menu au menuBar
 		this.add(fileMenu = new JMenu("File"));
 		this.add(optionMenu = new JMenu("Options"));
@@ -45,6 +47,12 @@ public class MazeMenuBar extends JMenuBar{
                     + "Rq: Telecom Paris is the best school ever ",
                     "How to use the interface",
                     JOptionPane.INFORMATION_MESSAGE);
+        });
+        
+        resetItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                mainApp.getMazeAppModel().reset(10, 10); //On prend comme taille initiale 10.
+            }
         });
 	}
 

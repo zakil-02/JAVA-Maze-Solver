@@ -10,7 +10,7 @@ public class EmptyShape extends BoxShape{
 	private static final long serialVersionUID = 1L;
 
 	public EmptyShape(int x, int y) {
-		super(x, y, "empty", Color.pink);
+		super(x, y, "E", Color.pink);
 	}
 
 }

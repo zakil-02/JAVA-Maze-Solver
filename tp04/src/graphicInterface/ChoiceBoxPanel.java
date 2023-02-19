@@ -80,7 +80,12 @@ public class ChoiceBoxPanel extends JPanel {
 		});
 		pathButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				mainApp.getMazeAppModel().solve();
+				try {
+					mainApp.getMazeAppModel().solve();
+				} catch (Exception e1) {
+					//
+					e1.printStackTrace();
+				}
 			}
 		});
 	}

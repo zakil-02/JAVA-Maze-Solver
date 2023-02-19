@@ -14,7 +14,7 @@ public class BoxShape extends Polygon {
 	//size of the box
 	private static final int size=30;
 	//color of the box
-	private final Color color;
+	private Color color;
 	//Position (x,y) of the box
 	private final String label;
 	private final int x;
@@ -88,6 +88,9 @@ public class BoxShape extends Polygon {
 	}
 	public final Color getColor() {
 		return color;
+	}
+	public final void setColor(Color color) {
+		this.color=color;
 	}
 	public String getLabel() {
 		return label;

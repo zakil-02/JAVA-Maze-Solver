@@ -33,7 +33,6 @@ public class DisplayPanel extends JPanel implements MouseListener{
 				 
 			 }
 		 }
-        //BoxShape box1=new BoxShape(40,40,Color.LIGHT_GRAY);
         //Ajout du listener de la souris 
         addMouseListener(this);
     }

@@ -11,14 +11,16 @@ import javax.swing.event.ChangeListener;
 public class MazeAppModel {
 	private final List<ChangeListener> listeners = new ArrayList<ChangeListener>() ;
 	//Les dimension de la maze.
-	private int width=10;
-	private int height=10;
+	private int width;
+	private int height;
 	private String selectedType;
 	private boolean edited;
 
 	public MazeAppModel() {
 		edited=false;
 		selectedType=null;
+		width=10;
+		height=10;
 		
 	}
 	

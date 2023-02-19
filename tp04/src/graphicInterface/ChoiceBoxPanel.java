@@ -14,19 +14,18 @@ public class ChoiceBoxPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JButton selectedType=null;
+	private JButton selected=null;
 	
-	private MainApp mainApp;
-	private final ConfigPanel configPanel;
+	private final MainApp mainApp;
 	private BoxButton wButton;
 	private BoxButton dButton;
 	private BoxButton aButton;
 	private BoxButton eButton; 
 	private ShowPathButton pathButton;
 	
-	public ChoiceBoxPanel(ConfigPanel configPanel) {
+	public ChoiceBoxPanel(MainApp mainApp) {
 		super();
-		this.configPanel=configPanel;
+		this.mainApp=mainApp;
 		this.setLayout(new BorderLayout());
 		JLabel descriptionLabel=new JLabel("<html>Choose what to put in<br>the maze: <html>");
 		descriptionLabel.setForeground(Color.white);
@@ -46,35 +45,37 @@ public class ChoiceBoxPanel extends JPanel {
 		
 		wButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	if (selectedType!=null) {selectedType.setEnabled(true);}
+		    	if (selected!=null) {selected.setEnabled(true);}
 		    	
 		        wButton.setEnabled(false);
-		        selectedType=wButton;		    }
+		        selected=wButton;
+		        mainApp.getMazeAppModel().setSelectedType("w");}
 		});
 		dButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	if (selectedType!=null) {selectedType.setEnabled(true);}
+		    	if (selected!=null) {selected.setEnabled(true);}
 		    	
 		        dButton.setEnabled(false);
-		        selectedType=dButton;
-		        
+		        selected=dButton;
+		        mainApp.getMazeAppModel().setSelectedType("d");
 		    }
 		});
 		aButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	if (selectedType!=null) {selectedType.setEnabled(true);}
+		    	if (selected!=null) {selected.setEnabled(true);}
 		    	
 		        aButton.setEnabled(false);
-		        selectedType=aButton;
+		        selected=aButton;
+		        mainApp.getMazeAppModel().setSelectedType("a");
 		    }
 		});
 		eButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	if (selectedType!=null) {selectedType.setEnabled(true);}
+		    	if (selected!=null) {selected.setEnabled(true);}
 		    	
 		        eButton.setEnabled(false);
-		        selectedType=eButton;
-		        
+		        selected=eButton;
+		        mainApp.getMazeAppModel().setSelectedType("e");
 		    }
 		});
 		pathButton.addActionListener(new ActionListener(){
@@ -84,11 +85,11 @@ public class ChoiceBoxPanel extends JPanel {
 		});
 	}
 	
-	public final JButton getSelectedType() {
-		return selectedType;
+	public final JButton getSelected() {
+		return selected;
 	}
-	public final void setSelectedType(JButton selectedType) {
-		this.selectedType = selectedType;
+	public final void setSelected(JButton selectedType) {
+		this.selected = selectedType;
 	}
 	
 	public void notifyForUpdate() {

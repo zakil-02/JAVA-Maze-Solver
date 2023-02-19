@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.nio.channels.SelectableChannel;
 
 public class DisplayPanel extends JPanel implements MouseListener{
     private static final long serialVersionUID = 1L;
@@ -27,8 +28,8 @@ public class DisplayPanel extends JPanel implements MouseListener{
         	}
 			 for(int j=0;j<h;j++) {
 				
-				 if (i%2==0) {map[i][j]=new BoxShape(startPixel+j*(2*size-7) ,(int)(startPixel +i*2*size -l ),Color.PINK);}
-				 else {map[i][j]=new BoxShape((int)( startPixel +j*(2*size-7) + d1),(int)(startPixel +i*(2*size) - d2-l),Color.PINK);}
+				 if (i%2==0) {map[i][j]=new EmptyShape(startPixel+j*(2*size-7) ,(int)(startPixel +i*2*size -l ));}
+				 else {map[i][j]=new EmptyShape((int)( startPixel +j*(2*size-7) + d1),(int)(startPixel +i*(2*size) - d2-l));}
 				 
 			 }
 		 }
@@ -55,17 +56,43 @@ public class DisplayPanel extends JPanel implements MouseListener{
 		 return map;
 	 }
 	 
-	 public void mousePressed(MouseEvent e) {
-	    for (BoxShape[] lBox : map) {
-	    	for (BoxShape b:lBox) {
-	    		if (b.contains(e.getPoint())) {
-			        b.setColor(Color.BLACK); //Juste un test avant de laisser faire le Modele en changeant la couleur par la coleur du button selectioné
-			        repaint();
-			        
+	
+	public void mousePressed(MouseEvent e) {
+		 int w= mainApp.getMazeAppModel().getWidth();
+		 int h = mainApp.getMazeAppModel().getHeight();
+		 for (int i=0;i<h;i++) {
+	    	for (int j=0;j<w;j++) {
+	    		BoxShape s=map[i][j];
+	    		if (s.contains(e.getPoint())) {
+	    			String sel = mainApp.getMazeAppModel().getSelectedType();
+	    			if (sel !=null) {
+	    				switch (sel) {
+			    			case("w"):
+			    				map[i][j] = new WallShape(s.getX(), s.getY());
+			    				repaint();
+			    				break;
+			    			case("d"):
+			    				map[i][j] = new DepartureShape(s.getX(), s.getY());
+				    			repaint();
+			    				break;
+			    			case("a"):
+			    				map[i][j] = new ArrivalShape(s.getX(), s.getY());
+				    			repaint();
+			    				break;
+			    			case("e"):
+			    				map[i][j] = new EmptyShape(s.getX(), s.getY());
+				    			repaint();
+			    				break;
+			    			default:
+			    				map[i][j] = new ArrivalShape(s.getX(), s.getY());
+		    			}
+	    			}
+	    			
+	    		}
+	    		
 	    	}
-	    }
 	      
-	      }
+		 }
 	 }
 	 public void notifyForUpdate() {
 		   repaint();

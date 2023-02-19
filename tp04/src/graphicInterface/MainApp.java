@@ -34,14 +34,6 @@ public class MainApp extends JFrame implements ChangeListener{
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(dim.width/5 - getWidth()/5, dim.height/5 - getHeight()/5);
         
-        /*Ajout d'une image comme fond 
-        Container c =getContentPane();
-        JLabel label =new JLabel();
-        label.setIcon(new ImageIcon("telcomParisLogo.jpg"));
-        Dimension size = label.getPreferredSize();
-        label.setBounds(50, 30, size.width, size.height);
-        c.add(label);
-        */
         
         //Set an image for the application.
         ImageIcon icon = new ImageIcon("logoGUI.png");

@@ -13,10 +13,12 @@ public class MazeAppModel {
 	//Les dimension de la maze.
 	private int width=10;
 	private int height=10;
+	private String selectedType;
 	private boolean edited;
 
 	public MazeAppModel() {
 		edited=false;
+		selectedType=null;
 		
 	}
 	
@@ -51,6 +53,15 @@ public class MazeAppModel {
 		//TODO 
 	}
 	public void reset() {
+		stateChanges();
+	}
+
+	public String getSelectedType() {
+		return selectedType;
+	}
+
+	public void setSelectedType(String selectedType) {
+		this.selectedType = selectedType;
 		stateChanges();
 	}
 	

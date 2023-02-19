@@ -60,7 +60,7 @@ public class ConfigPanel extends JPanel{
 		this.add(hField);
 		
 		this.add(okButton);
-		cBoxPanel= new ChoiceBoxPanel(this);
+		cBoxPanel= new ChoiceBoxPanel(mainApp);
 		this.add(new JLabel("     "));
 		this.add(cBoxPanel);
 		
@@ -68,7 +68,9 @@ public class ConfigPanel extends JPanel{
 		
 
 	}
-	
+	public ChoiceBoxPanel getChoiceBoxPanel() {
+		return cBoxPanel;
+	}
 	public void notifyForUpdate() {
 		   okButton.notifyForUpdate() ;
 		   cBoxPanel.notifyForUpdate() ;

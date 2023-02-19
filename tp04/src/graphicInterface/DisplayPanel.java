@@ -10,35 +10,19 @@ public class DisplayPanel extends JPanel implements MouseListener{
     private static final int startPixel=70;
     private static final int size=30;
     private final MainApp mainApp;
-    private BoxShape[][] map;
+    //private BoxShape[][] map;
 	public DisplayPanel(MainApp mainApp) {
         super();
         this.mainApp=mainApp;
-        int w = mainApp.getMazeAppModel().getWidth();
-        int h = mainApp.getMazeAppModel().getHeight();
         setBackground(Color.WHITE);
-        //La, on contruit une maze dont tous les boxes sont de type empty.
-        map = new BoxShape[w][h];
-        float d1=27;
-        float d2=15;
-        int l=0;
-        for(int i=0;i<w;i++) {
-        	if (i>=2 && i%2==0) {
-					 l+=30;
-        	}
-			 for(int j=0;j<h;j++) {
-				
-				 if (i%2==0) {map[i][j]=new EmptyShape(startPixel+j*(2*size-7) ,(int)(startPixel +i*2*size -l ));}
-				 else {map[i][j]=new EmptyShape((int)( startPixel +j*(2*size-7) + d1),(int)(startPixel +i*(2*size) - d2-l));}
-				 
-			 }
-		 }
+        //map=mainApp.getMazeAppModel().getBoxes();
         //Ajout du listener de la souris 
         addMouseListener(this);
     }
 	 @Override
 	 public void paintComponent(Graphics g) {
 	   super.paintComponent(g);
+	   BoxShape[][] map=mainApp.getMazeAppModel().getBoxes();
 	   for(int i=0;i<map.length;i++) {
 		   for(int j=0;j<map[0].length;j++) {
 			   BoxShape box=map[i][j];
@@ -51,14 +35,15 @@ public class DisplayPanel extends JPanel implements MouseListener{
 	   
 	 }
 	 //getter of the map
-	 public BoxShape[][] getMap(){
-		 return map;
-	 }
+	 //public BoxShape[][] getMap(){
+		 //return map;
+	 //}
 	 
 	
 	public void mousePressed(MouseEvent e) {
 		 int w= mainApp.getMazeAppModel().getWidth();
 		 int h = mainApp.getMazeAppModel().getHeight();
+		 BoxShape[][] map=mainApp.getMazeAppModel().getBoxes();
 		 for (int i=0;i<h;i++) {
 	    	for (int j=0;j<w;j++) {
 	    		BoxShape s=map[i][j];

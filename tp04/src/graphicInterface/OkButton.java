@@ -26,10 +26,9 @@ public class OkButton extends JButton implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		int width=Integer.valueOf(mainApp.getMainPanel().getConfigPanel().getwField().getText());
-		int heigth=Integer.valueOf(mainApp.getMainPanel().getConfigPanel().gethField().getText());
-		//On demande au model de changer les valeurs;
-		mainApp.getMazeAppModel().setWidth(width);
-		mainApp.getMazeAppModel().setHeight(heigth);
+		int height=Integer.valueOf(mainApp.getMainPanel().getConfigPanel().gethField().getText());
+		//Reset the maze with new dimensions and empty boxes
+		mainApp.getMazeAppModel().reset(width, height);
 	}
 
 }

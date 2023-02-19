@@ -35,7 +35,7 @@ public class BoxButton extends JButton{
 				break;
 			
 			case("Wall"):
-				this.setBackground(Color.BLACK);
+				this.setBackground(Color.DARK_GRAY);
 				this.setForeground(Color.WHITE);
 		}
 	}

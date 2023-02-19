@@ -10,7 +10,7 @@ public class WallShape extends BoxShape{
 	private static final long serialVersionUID = 1L;
 
 	public WallShape(int x, int y) {
-		super(x, y, "W", Color.black);
+		super(x, y, "W", Color.DARK_GRAY);
 	}
 
 }

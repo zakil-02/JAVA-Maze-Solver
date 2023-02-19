@@ -8,6 +8,9 @@ import java.nio.channels.SelectableChannel;
 public class DisplayPanel extends JPanel implements MouseListener{
     private static final long serialVersionUID = 1L;
     private final MainApp mainApp;
+    private int nDepartures=0;
+    private int nArrivals=0;
+    
     //private BoxShape[][] map;
 	public DisplayPanel(MainApp mainApp) {
         super();
@@ -55,10 +58,12 @@ public class DisplayPanel extends JPanel implements MouseListener{
 			    				break;
 			    			case("d"):
 			    				map[i][j] = new DepartureShape(s.getX(), s.getY());
+			    				nDepartures = getnDepartures() + 1;
 				    			repaint();
 			    				break;
 			    			case("a"):
 			    				map[i][j] = new ArrivalShape(s.getX(), s.getY());
+			    				nArrivals = getnArrivals() + 1;
 				    			repaint();
 			    				break;
 			    			case("e"):
@@ -99,5 +104,11 @@ public class DisplayPanel extends JPanel implements MouseListener{
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	public int getnDepartures() {
+		return nDepartures;
+	}
+	public int getnArrivals() {
+		return nArrivals;
 	}
 }

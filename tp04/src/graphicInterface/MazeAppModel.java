@@ -101,6 +101,7 @@ public class MazeAppModel {
 		//Initialisons maze avec notre fichier text
 		maze.initFromTextFile("processingData/ActualMaze");
 		
+		//J'ai fait la sublist pour enlever le depart et l'arrivée de la liste
 		List<Vertex> cheminSolution = maze.getSolution().subList(1, maze.getSolution().size()-1);
 		
 		for (Vertex vertex:cheminSolution) {
@@ -108,7 +109,7 @@ public class MazeAppModel {
 			int i=mb.getY();
 			int j=mb.getX();
 			
-			boxes[i][j].setColor(Color.DARK_GRAY);
+			boxes[i][j].setColor(Color.RED);
 			
 		}
 		stateChanges();

@@ -83,7 +83,7 @@ public class MazeAppModel {
 			}
 			pw.close();
 		}catch (Exception e){
-			throw new Exception("The file to save is invalid");
+			System.out.println(e.getMessage());
 		}
 	}
 	

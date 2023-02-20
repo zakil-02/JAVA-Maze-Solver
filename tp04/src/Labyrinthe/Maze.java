@@ -170,15 +170,26 @@ public class Maze implements graph.Graph, graph.Distance{
 				line = br.readLine();
 				lineNumber++;
 			}
-			if (compteurDeparts!=1 || compteurArrivals!=1) {//Le programme supporte une seule destination et un seul depart!
-				throw new IOException("Multiple destinations/ departures have been received");
+			//Le programme supporte une seule destination et un seul depart!
+			if (compteurDeparts<1) {
+				throw new IOException("Departure has not been specified");
+			}
+			if (compteurDeparts>1) {
+				throw new IOException("Multiple departures have been received");
+			}
+			if (compteurArrivals<1) {
+				throw new IOException("Destination has not been specified");
+			}
+			if (compteurArrivals>1) {
+				throw new IOException("Multiple destinations have been received");
 			}
 			if (lineNumber-1!=length) {
 				throw new MazeReadingException(fileName, lineNumber, "length not respected");
 			}
 			br.close();
 		}catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {br.close();}
 	}

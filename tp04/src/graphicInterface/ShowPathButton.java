@@ -19,11 +19,24 @@ public class ShowPathButton extends JButton implements ActionListener {
 		this.setPreferredSize(new Dimension(170,30));
 		this.setBackground(Color.DARK_GRAY);
 		this.setForeground(Color.WHITE);
+		addActionListener(this);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
+		/*if (mainApp.getMainPanel().getDisplayPanel().getnArrivals()!=1 || mainApp.getMainPanel().getDisplayPanel().getnDepartures()!=1) {
+			JOptionPane d = new JOptionPane();
+			d.showMessageDialog(mainApp, "Error!\n Multiple destinations/Arrivals", " ErrorMessage ", JOptionPane.WARNING_MESSAGE);
+			mainApp.getMazeAppModel().reset(mainApp.getMazeAppModel().getWidth(), mainApp.getMazeAppModel().getHeight());
+		}*/
+		try {
+			mainApp.getMazeAppModel().solve();
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(mainApp, "Error!\n"+ex.getMessage(), " ErrorMessage ", JOptionPane.WARNING_MESSAGE);
+			mainApp.getMazeAppModel().reset(mainApp.getMazeAppModel().getWidth(), mainApp.getMazeAppModel().getHeight());
+		}
+	}
+		
 }
+
+

@@ -2,8 +2,6 @@ package graphicInterface;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.ActionListener;
 
 
@@ -78,9 +76,9 @@ public class ChoiceBoxPanel extends JPanel {
 		        mainApp.getMazeAppModel().setSelectedType("e");
 		    }
 		});
-		pathButton.addActionListener(new ActionListener(){
-			@SuppressWarnings("static-access")
-			public void actionPerformed(ActionEvent e) {
+		/*pathButton.addActionListener(new ActionListener(){
+			//@SuppressWarnings("static-access")
+			public void actionPerformed(ActionEvent e){
 				if (mainApp.getMainPanel().getDisplayPanel().getnArrivals()!=1 || mainApp.getMainPanel().getDisplayPanel().getnDepartures()!=1) {
 					JOptionPane d = new JOptionPane();
 					d.showMessageDialog(mainApp, "Error!\n Multiple destinations/Arrivals", " ErrorMessage ", JOptionPane.WARNING_MESSAGE);
@@ -94,10 +92,10 @@ public class ChoiceBoxPanel extends JPanel {
 					         "Error!\n"+ex.getMessage(),
 					         " ErrorMessage ",
 					         JOptionPane.WARNING_MESSAGE);
-					ex.printStackTrace();
+					mainApp.getMazeAppModel().reset(mainApp.getMazeAppModel().getWidth(), mainApp.getMazeAppModel().getHeight());
 				}
 			}
-		});
+		});*/
 	}
 	
 	public final JButton getSelected() {
@@ -114,4 +112,8 @@ public class ChoiceBoxPanel extends JPanel {
 		eButton.repaint();
 		aButton.repaint();
 		pathButton.repaint(); 
+	}
+
+	public MainApp getMainApp() {
+		return mainApp;
 	}}

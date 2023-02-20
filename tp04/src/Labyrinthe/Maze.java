@@ -234,7 +234,7 @@ public class Maze implements graph.Graph, graph.Distance{
 				endVertex=s;
 				eFlag=true;
 			}
-			k++;
+			k++;  
 		}
 			
 		//Application de l'algorithme de Dijkstra

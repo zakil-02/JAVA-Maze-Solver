@@ -7,6 +7,7 @@ import java.awt.*;
 public class MainPanel extends JPanel {
 	private final MainApp mainApp;
 	private ConfigPanel configPanel;
+	
 	private DisplayPanel displayPanel;
     private static final long serialVersionUID = 1L;
 
@@ -26,4 +27,7 @@ public class MainPanel extends JPanel {
 		   displayPanel.notifyForUpdate();
 		   repaint();
 		}
+	public DisplayPanel getDisplayPanel() {
+		return displayPanel;
+	}
 }

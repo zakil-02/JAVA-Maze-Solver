@@ -9,7 +9,7 @@ public class DisplayPanel extends JPanel implements MouseListener{
     private static final long serialVersionUID = 1L;
     private final MainApp mainApp;
     private int nDepartures=0;
-    private int nArrivals=0;
+	private int nArrivals=0;
     
     //private BoxShape[][] map;
 	public DisplayPanel(MainApp mainApp) {
@@ -110,5 +110,11 @@ public class DisplayPanel extends JPanel implements MouseListener{
 	}
 	public int getnArrivals() {
 		return nArrivals;
+	}
+	public void setnDepartures(int nDepartures) {
+		this.nDepartures = nDepartures;
+	}
+	public void setnArrivals(int nArrivals) {
+		this.nArrivals = nArrivals;
 	}
 }

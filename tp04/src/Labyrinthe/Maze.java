@@ -111,9 +111,9 @@ public class Maze implements graph.Graph, graph.Distance{
 	
 	public ArrayList<Vertex> getAllVertexes(){
 		ArrayList<Vertex> sommets = new ArrayList<>();
-		for (int i=0;i<length;i++) {
-			for (int k=0;k<width;k++) {
-				Vertex v = (Vertex) boxes.get(i).get(k);
+		for (int i=0;i<width;i++) {
+			for (int k=0;k<length;k++) {
+				Vertex v = (Vertex) boxes.get(k).get(i);
 				sommets.add(v);
 			}
 		}
@@ -189,7 +189,7 @@ public class Maze implements graph.Graph, graph.Distance{
 			br.close();
 		}catch (Exception e) {
 			//e.printStackTrace();
-			System.out.println(e.getMessage());
+			e.getMessage();
 		}
 		finally {br.close();}
 	}
@@ -214,7 +214,7 @@ public class Maze implements graph.Graph, graph.Distance{
 		}
 	}
 	
-	public List<Vertex> getSolution() {
+	public List<Vertex> getSolution() throws Exception{
 			
 		//List de tous les sommets
 		List<Vertex> sommets=getAllVertexes();
@@ -250,6 +250,7 @@ public class Maze implements graph.Graph, graph.Distance{
 			
 		//Application de l'algorithme de Dijkstra
 		sP = Dijkstra.dijkstra(graph,startVertex, endVertex, pV, mD, distance, sP);
+		
 		//Extraction du chemin solution.
 		List<Vertex> cheminSolution = sP.getShortestPath(endVertex);
 		return cheminSolution;

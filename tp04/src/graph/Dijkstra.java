@@ -1,8 +1,7 @@
 package graph;
 import java.util.*;
-import Labyrinthe.*;
-public class Dijkstra {
-	public static ShortestPaths dijkstra(Graph graph, Vertex startVertex, Vertex endVertex, ProcessedVertexes processedVertexes, MinDistance minDistance, Distance distance, ShortestPaths shortestPaths) {
+public class Dijkstra{
+	public static ShortestPaths dijkstra(Graph graph, Vertex startVertex, Vertex endVertex, ProcessedVertexes processedVertexes, MinDistance minDistance, Distance distance, ShortestPaths shortestPaths)  throws Exception{
 		//Extraire la liste des sommets du graph
 		List<Vertex> sommets= graph.getAllVertexes();
 		//liste presentant les sommets non traités
@@ -40,6 +39,14 @@ public class Dijkstra {
 			NotProcessedYet.remove(pivotVertex);
 			
 		}
+		
+		
+		//Gestion de l'exception : Pas de chemin possible.
+		if (minDistance.getFor(endVertex)<Integer.MIN_VALUE +10000 ) { // J'ai  donné une marge de 10000. On aura jamais un labyrinthe de 100x100!
+			throw new Exception("Path not found");
+			
+		}
+		
 		return shortestPaths;
 	}
 

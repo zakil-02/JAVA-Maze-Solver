@@ -74,8 +74,8 @@ public class MazeAppModel {
 		try {
 			String path="processingData/ActualMaze"; //On choisit un emplacement pour mettre ce fichier qui 
 			PrintWriter pw = new PrintWriter(new File(path));
-			for (int i=0;i<height;i++) {
-				for (int k=0;k<width;k++) {
+			for (int i=0;i<width;i++) {
+				for (int k=0;k<height;k++) {
 					pw.print(boxes[i][k].getLabel());
 				}
 				pw.println();//Pour sauter la ligne et garder la forme.

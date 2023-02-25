@@ -31,8 +31,8 @@ public class ShowPathButton extends JButton implements ActionListener {
 			mainApp.getMazeAppModel().reset(mainApp.getMazeAppModel().getWidth(), mainApp.getMazeAppModel().getHeight());
 		}*/
 		try {
-			int compteurArrivals=mainApp.getMainPanel().getDisplayPanel().getnArrivals();
-			int compteurDeparts=mainApp.getMainPanel().getDisplayPanel().getnDepartures();
+			int compteurArrivals=mainApp.getMazeAppModel().getnArrivals();
+			int compteurDeparts=mainApp.getMazeAppModel().getnDepartures();
 			if (compteurDeparts<1) {
 				throw new IOException("Departure has not been specified");
 			}
@@ -52,8 +52,8 @@ public class ShowPathButton extends JButton implements ActionListener {
 			mainApp.getMazeAppModel().reset(mainApp.getMazeAppModel().getWidth(), mainApp.getMazeAppModel().getHeight());
 		}
 		//Remise à 0 des compteurs
-		mainApp.getMainPanel().getDisplayPanel().setnArrivals(0); 
-		mainApp.getMainPanel().getDisplayPanel().setnDepartures(0);
+		mainApp.getMazeAppModel().setnDepartures(0); 
+		mainApp.getMazeAppModel().setnArrivals(0);
 	}
 		
 }

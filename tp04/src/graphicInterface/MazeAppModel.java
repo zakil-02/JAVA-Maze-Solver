@@ -1,18 +1,24 @@
 package graphicInterface;
 import java.util.*;
 import java.awt.Color;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Labyrinthe.ArrivalBox;
+import Labyrinthe.DepartureBox;
+import Labyrinthe.EmptyBox;
 import Labyrinthe.Maze;
 import Labyrinthe.MazeBox;
 import Labyrinthe.MazeReadingException;
+import Labyrinthe.WallBox;
 import graph.*;
 
 
@@ -23,6 +29,8 @@ public class MazeAppModel {
 	private int height;
 	private String selectedType;
 	private BoxShape[][] boxes;
+	private int nArrivals=0;
+	private int nDepartures=0;
 	private static final int startPixel=70;
     private static final int size=30;
 
@@ -85,6 +93,81 @@ public class MazeAppModel {
 		}catch (Exception e){
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	private int widthFileCounter(File file) throws IOException{
+		int nLines=0;
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader(file.getPath()));
+			while (br.readLine() != null) {
+            nLines++;
+			}
+			
+		}catch(IOException e ) {e.getMessage();}
+		
+		return nLines;
+	}
+	
+	
+	public void importFromOs(File file) throws MazeReadingException, IOException{
+		
+		BufferedReader br=null;
+		try{
+			br = new BufferedReader(new FileReader(file.getPath()));
+			String line= br.readLine();
+			System.out.println(line);
+			
+			this.height=line.length();
+			this.width= widthFileCounter(file);
+			
+			reset(width, height);
+			MainApp mainApp = (MainApp)listeners.get(0);
+			mainApp.getMainPanel().getConfigPanel().getwField().setText(String.valueOf(width));
+			mainApp.getMainPanel().getConfigPanel().gethField().setText(String.valueOf(height));
+			
+			int lineNumber =1;
+			while (line!= null) {
+				if (line.length()!= height) {
+					 throw new MazeReadingException(file.getPath(), lineNumber, "Width not respected");
+				}
+				System.out.println(line);
+				int i=0;
+				while (i<height) {
+					String label=String.valueOf(line.charAt(i));
+					System.out.println(label);
+					BoxShape box = boxes[lineNumber-1][i];
+					switch (label){
+					//il y a 4 cas : wall, empty, arrival ou departure.
+					case "W":
+						boxes[lineNumber-1][i]= new WallShape(box.getX(), box.getY());
+						break;
+					case "E":
+						boxes[lineNumber-1][i]= new EmptyShape(box.getX(), box.getY());
+						break;
+					case "A":
+						boxes[lineNumber-1][i]= new ArrivalShape(box.getX(), box.getY());
+						nArrivals++;
+						break;
+					case "D":
+						boxes[lineNumber-1][i]= new DepartureShape(box.getX(), box.getY());
+						nDepartures++;
+						break;
+					default:
+						throw new MazeReadingException(file.getPath(), lineNumber, "Invalid format");
+					}
+					i++;                
+				}
+				line = br.readLine(); //on passe à ligne suivante.
+				System.out.println(line);
+				lineNumber++;
+			}
+			br.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+			e.getMessage();
+		}
+		stateChanges();
 	}
 	
 	
@@ -151,6 +234,22 @@ public class MazeAppModel {
 
 	public void setBoxes(BoxShape[][] boxes) {
 		this.boxes = boxes;
+	}
+
+	public int getnDepartures() {
+		return nDepartures;
+	}
+
+	public void setnDepartures(int nDepartures) {
+		this.nDepartures = nDepartures;
+	}
+
+	public int getnArrivals() {
+		return nArrivals;
+	}
+
+	public void setnArrivals(int nArrivals) {
+		this.nArrivals = nArrivals;
 	}
 	
 	

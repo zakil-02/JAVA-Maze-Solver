@@ -1,5 +1,8 @@
 package Labyrinthe;
 
+import java.io.File;
+import java.io.FileReader;
+
 public class MazeReadingException extends Exception{
 	/**
 	 * 

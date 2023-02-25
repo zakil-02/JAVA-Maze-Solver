@@ -3,6 +3,7 @@ package graphicInterface;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 public class MazeMenuBar extends JMenuBar{
 	/**
 	 * 
@@ -53,6 +54,18 @@ public class MazeMenuBar extends JMenuBar{
             public void actionPerformed(ActionEvent ae) {
                 mainApp.getMazeAppModel().reset(10, 10); //On prend comme taille initiale 10.
             }
+        });
+        
+        importItem.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent ev) {
+        		JFileChooser fChooser = new JFileChooser();
+        		int option = fChooser.showOpenDialog(null);
+        		if (option == JFileChooser.APPROVE_OPTION) {
+        			File file= fChooser.getSelectedFile();
+        			try {mainApp.getMazeAppModel().importFromOs(file);}catch(Exception e) {e.getMessage();}
+        			
+        		}
+        	}
         });
 	}
 

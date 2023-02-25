@@ -8,8 +8,6 @@ import java.nio.channels.SelectableChannel;
 public class DisplayPanel extends JPanel implements MouseListener{
     private static final long serialVersionUID = 1L;
     private final MainApp mainApp;
-    private int nDepartures=0;
-	private int nArrivals=0;
     
     //private BoxShape[][] map;
 	public DisplayPanel(MainApp mainApp) {
@@ -44,6 +42,7 @@ public class DisplayPanel extends JPanel implements MouseListener{
 	public void mousePressed(MouseEvent e) {
 		 int w= mainApp.getMazeAppModel().getWidth();
 		 int h = mainApp.getMazeAppModel().getHeight();
+		 
 		 BoxShape[][] map=mainApp.getMazeAppModel().getBoxes();
 		 for (int i=0;i<w;i++) {
 	    	for (int j=0;j<h;j++) {
@@ -58,12 +57,12 @@ public class DisplayPanel extends JPanel implements MouseListener{
 			    				break;
 			    			case("d"):
 			    				map[i][j] = new DepartureShape(s.getX(), s.getY());
-			    				nDepartures = getnDepartures() + 1;
+			    				mainApp.getMazeAppModel().setnDepartures(mainApp.getMazeAppModel().getnDepartures() + 1);
 				    			repaint();
 			    				break;
 			    			case("a"):
 			    				map[i][j] = new ArrivalShape(s.getX(), s.getY());
-			    				nArrivals = getnArrivals() + 1;
+			    				mainApp.getMazeAppModel().setnDepartures(mainApp.getMazeAppModel().getnDepartures() + 1);
 				    			repaint();
 			    				break;
 			    			case("e"):
@@ -104,17 +103,5 @@ public class DisplayPanel extends JPanel implements MouseListener{
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
-	}
-	public int getnDepartures() {
-		return nDepartures;
-	}
-	public int getnArrivals() {
-		return nArrivals;
-	}
-	public void setnDepartures(int nDepartures) {
-		this.nDepartures = nDepartures;
-	}
-	public void setnArrivals(int nArrivals) {
-		this.nArrivals = nArrivals;
 	}
 }

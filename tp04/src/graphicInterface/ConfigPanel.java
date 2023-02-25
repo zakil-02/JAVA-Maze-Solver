@@ -4,15 +4,9 @@ import java.awt.*;
 
 public class ConfigPanel extends JPanel{
 	private MainApp mainApp;
-	private HeightField hField;
-	private WidthField wField;
-	public HeightField gethField() {
-		return hField;
-	}
-
-	public WidthField getwField() {
-		return wField;
-	}
+	private final HeightField hField;
+	private final WidthField wField;
+	
 
 	private OkButton okButton; //Boutton de confirmation de choix 
 	private ChoiceBoxPanel cBoxPanel; // Le panel qui contient les differents types de boxes
@@ -76,6 +70,12 @@ public class ConfigPanel extends JPanel{
 		   cBoxPanel.notifyForUpdate() ;
 		   hField.notifyForUpdate() ;
 		   wField.notifyForUpdate() ;
-		}
+	}
+	public HeightField gethField() {
+		return hField;
+	}
 
+	public WidthField getwField() {
+		return wField;
+	}
 }

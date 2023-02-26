@@ -67,6 +67,21 @@ public class MazeMenuBar extends JMenuBar{
         		}
         	}
         });
+        saveItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                	JFileChooser fChooser = new JFileChooser();
+            		int selection = fChooser.showSaveDialog(null);
+            		if (selection == JFileChooser.APPROVE_OPTION) {
+            			File file= fChooser.getSelectedFile();
+            			mainApp.getMazeAppModel().saveSolution(file);
+            		}
+					
+				} catch (Exception e) {
+					e.getMessage();
+				} 
+            }
+        });
 	}
 
 }

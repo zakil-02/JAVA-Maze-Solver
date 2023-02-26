@@ -24,12 +24,6 @@ public class ShowPathButton extends JButton implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e){
-		
-
-		/*if (mainApp.getMainPanel().getDisplayPanel().getnArrivals()!=1 || mainApp.getMainPanel().getDisplayPanel().getnDepartures()!=1) {
-			JOptionPane.showMessageDialog(mainApp, "Error!\n hhahaha", " ErrorMessage ", JOptionPane.WARNING_MESSAGE);
-			mainApp.getMazeAppModel().reset(mainApp.getMazeAppModel().getWidth(), mainApp.getMazeAppModel().getHeight());
-		}*/
 		try {
 			int compteurArrivals=mainApp.getMazeAppModel().getnArrivals();
 			int compteurDeparts=mainApp.getMazeAppModel().getnDepartures();
@@ -51,9 +45,6 @@ public class ShowPathButton extends JButton implements ActionListener {
 			JOptionPane.showMessageDialog(mainApp, "Error!\n" + ex.getMessage(), " ErrorMessage ", JOptionPane.WARNING_MESSAGE);
 			mainApp.getMazeAppModel().reset(mainApp.getMazeAppModel().getWidth(), mainApp.getMazeAppModel().getHeight());
 		}
-		//Remise à 0 des compteurs
-		mainApp.getMazeAppModel().setnDepartures(0); 
-		mainApp.getMazeAppModel().setnArrivals(0);
 	}
 		
 }

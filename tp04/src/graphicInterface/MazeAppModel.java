@@ -3,8 +3,6 @@ import java.util.*;
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,13 +10,7 @@ import java.io.PrintWriter;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import Labyrinthe.ArrivalBox;
-import Labyrinthe.DepartureBox;
-import Labyrinthe.EmptyBox;
-import Labyrinthe.Maze;
-import Labyrinthe.MazeBox;
-import Labyrinthe.MazeReadingException;
-import Labyrinthe.WallBox;
+import Labyrinthe.*;
 import graph.*;
 
 
@@ -78,9 +70,8 @@ public class MazeAppModel {
 			listener.stateChanged(evt);
 		}
 	}
-	public void saveBoxesInFile() throws Exception{
+	public void saveBoxesInFile(String path) throws Exception{
 		try {
-			String path="processingData/ActualMaze"; //On choisit un emplacement pour mettre ce fichier qui 
 			PrintWriter pw = new PrintWriter(new File(path));
 			for (int i=0;i<width;i++) {
 				for (int k=0;k<height;k++) {
@@ -91,7 +82,7 @@ public class MazeAppModel {
 			}
 			pw.close();
 		}catch (Exception e){
-			System.out.println(e.getMessage());
+			e.getMessage();
 		}
 	}
 	
@@ -110,13 +101,13 @@ public class MazeAppModel {
 	}
 	
 	
+	
 	public void importFromOs(File file) throws MazeReadingException, IOException{
 		
 		BufferedReader br=null;
 		try{
 			br = new BufferedReader(new FileReader(file.getPath()));
 			String line= br.readLine();
-			System.out.println(line);
 			
 			this.height=line.length();
 			this.width= widthFileCounter(file);
@@ -129,13 +120,12 @@ public class MazeAppModel {
 			int lineNumber =1;
 			while (line!= null) {
 				if (line.length()!= height) {
-					 throw new MazeReadingException(file.getPath(), lineNumber, "Width not respected");
+					br.close();
+					throw new MazeReadingException(file.getPath(), lineNumber, "Width not respected");
 				}
-				System.out.println(line);
 				int i=0;
 				while (i<height) {
 					String label=String.valueOf(line.charAt(i));
-					System.out.println(label);
 					BoxShape box = boxes[lineNumber-1][i];
 					switch (label){
 					//il y a 4 cas : wall, empty, arrival ou departure.
@@ -159,7 +149,6 @@ public class MazeAppModel {
 					i++;                
 				}
 				line = br.readLine(); //on passe à ligne suivante.
-				System.out.println(line);
 				lineNumber++;
 			}
 			br.close();
@@ -173,7 +162,7 @@ public class MazeAppModel {
 	
 	public void solve() throws MazeReadingException, Exception{
 		//Il faut tout d'abord créer un fichier text qui représente le labyrinthe à partir de ce qui est affiché.
-		saveBoxesInFile();
+		saveBoxesInFile("processingData/ActualMaze");
 		
 		List<List<MazeBox>> map = new ArrayList<>();
 		for (int i=0; i<width;i++) {
@@ -192,8 +181,8 @@ public class MazeAppModel {
 			int i=mb.getY();
 			int j=mb.getX();
 			
-			boxes[i][j].setColor(Color.RED);
-			
+			BoxShape bs=boxes[i][j];
+			boxes[i][j]= new SolutionShape(bs.getX(), bs.getY());
 		}
 		stateChanges();
 	}
@@ -216,7 +205,14 @@ public class MazeAppModel {
 				else {boxes[i][j]=new EmptyShape((int)( startPixel +j*(2*size-7) + d1),(int)(startPixel +i*(2*size) - d2-l));}
 			}
 		}
+        this.nDepartures=0;
+        this.nArrivals=0;
 		stateChanges();
+	}
+	
+	public void saveSolution(File file) {
+		try {saveBoxesInFile(file.getPath());}catch(Exception e){}
+		
 	}
 
 	public String getSelectedType() {

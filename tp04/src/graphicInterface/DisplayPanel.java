@@ -3,7 +3,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.nio.channels.SelectableChannel;
 
 public class DisplayPanel extends JPanel implements MouseListener{
     private static final long serialVersionUID = 1L;
@@ -62,7 +61,7 @@ public class DisplayPanel extends JPanel implements MouseListener{
 			    				break;
 			    			case("a"):
 			    				map[i][j] = new ArrivalShape(s.getX(), s.getY());
-			    				mainApp.getMazeAppModel().setnDepartures(mainApp.getMazeAppModel().getnDepartures() + 1);
+			    				mainApp.getMazeAppModel().setnArrivals(mainApp.getMazeAppModel().getnArrivals() + 1);
 				    			repaint();
 			    				break;
 			    			case("e"):

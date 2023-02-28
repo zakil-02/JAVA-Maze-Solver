@@ -17,24 +17,33 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.File;
 
+/**
+
+Represents a maze as a graph with a distance function that assigns a weight of 1 to each edge in the graph.
+*/
 public class Maze implements graph.Graph, graph.Distance{
 	private final int length;
 	private final int width;
 	private List<List<MazeBox>> boxes;
+	
 	public Maze(int length, int width, List<List<MazeBox>> boxes) {
 		this.length=length;
 		this.width=width;
 		this.boxes=boxes;
 	}
+	
 	public int getLength() {
 		return length;
 	}
+	
 	public int getWidth() {
 		return width;
 	}
+	
 	public List<List<MazeBox>> getBoxes(){
 		return boxes;
 	}
+	
 	public ArrayList<Vertex> getSuccessors(Vertex s) {
 		/*
 		Si la liste des successeurs ne considère pas les WallBoxes, et le startVertex n'est pas un WallBox alors notre 
@@ -42,7 +51,13 @@ public class Maze implements graph.Graph, graph.Distance{
 		
 		Il y'en a 6 voisins à déterminer en fonction de la parité de i l'indice de la ligne.
 		*/
-		
+		/**
+
+		Returns a list of vertices that are successors of the given vertex in the graph.
+		A vertex is considered a successor if there is a directed edge from the given vertex to the successor.
+		@param s the vertex whose successors are to be retrieved
+		@return an ArrayList of vertices that are successors of the given vertex in the graph
+		*/
 		ArrayList<Vertex> res = new ArrayList<Vertex>();
 		MazeBox box = (MazeBox) s;
 		int j = box.getX();  //par définition, abscisse --> colonnes et ordonnées --> lignes
@@ -108,7 +123,11 @@ public class Maze implements graph.Graph, graph.Distance{
 		return res;
 	}
 	
-	
+	/**
+
+	Returns a list of all vertices in the graph.
+	@return an ArrayList of all vertices in the graph
+	*/
 	public ArrayList<Vertex> getAllVertexes(){
 		ArrayList<Vertex> sommets = new ArrayList<>();
 		for (int i=0;i<width;i++) {
@@ -120,25 +139,36 @@ public class Maze implements graph.Graph, graph.Distance{
 		return sommets;
 		
 	}
+	/**
+
+	Returns the distance between two neighbors in the graph, represented by their departure and arrival vertices.
+	The distance is defined as the length of the shortest path between the two vertices in the graph.
+	@param departure the vertex from which the distance is to be measured
+	@param arrival the vertex to which the distance is to be measured
+	@return the weight of this arc (departure, arrival) in the graph which is 1 if they are neighbors and Integer.MAX_VALUE if not.
+	*/
 	public int getDistance(Vertex departure,Vertex arrival) {
-		/*getDistance ne va vraiment servir que s'il y avait 
-		  des poids, pour notre cas le poids est la fonction qui 
-		  associe 1 a chaque 2 sommets voisins.*/
 		if (getSuccessors(departure).contains(arrival)) {
 			return 1;
 		}
 		return Integer.MAX_VALUE;
-		
-		
 	}
+	
+	/**
+
+	Reads a maze from a text file and initializes the object with the maze data.
+	@param fileName the name of the text file containing the maze data
+	@throws MazeReadingException if there is an error with the file data.
+	@throws IOException if there is an error reading the file
+	*/
 	public final void initFromTextFile(String fileName) throws MazeReadingException, IOException{
 		BufferedReader br=null;
 		try{
 			br = new BufferedReader(new FileReader(fileName));
 			String line= br.readLine();
 			int lineNumber =1;
-			int compteurDeparts = 0;// A utiliser pour compter le nombre de "D" dans le fichier.
-			int compteurArrivals =0;// A utiliser pour compter le nombre de "A" dans le fichier.
+			int compteurDeparts = 0;
+			int compteurArrivals =0;
 			while (line != null) {
 				if (line.length()!= width) {
 					 throw new MazeReadingException(fileName, lineNumber, "Width not respected");
@@ -147,7 +177,7 @@ public class Maze implements graph.Graph, graph.Distance{
 				while (i<width) {
 					String label=String.valueOf(line.charAt(i));
 					switch (label){
-					//il y a 4 cas : wall, empty, arrival ou departure.
+					//Only 4 letters are valid : A, D, E, W.
 					case "W":
 						boxes.get(lineNumber-1).add(new WallBox(i, lineNumber-1, Maze.this));
 						break;
@@ -170,7 +200,7 @@ public class Maze implements graph.Graph, graph.Distance{
 				line = br.readLine();
 				lineNumber++;
 			}
-			//Le programme supporte une seule destination et un seul depart!
+			//Only one departure and one arrival are supported!
 			if (compteurDeparts<1) {
 				throw new IOException("Departure has not been specified");
 			}
@@ -188,14 +218,11 @@ public class Maze implements graph.Graph, graph.Distance{
 			}
 			br.close();
 		}catch (Exception e) {
-			//e.printStackTrace();
 			e.getMessage();
 		}
 		finally {br.close();}
 	}
-	/* On adoptera PrintWriter pour representer le labyrinthe
-	  sur un fichier
-	 */
+	
 	public final void saveToTextFile(String fileName) {
 		try {
 			PrintWriter pw = new PrintWriter(new File(fileName));
@@ -203,7 +230,7 @@ public class Maze implements graph.Graph, graph.Distance{
 				for (int k=0;k<width;k++) {
 					pw.print(boxes.get(i).get(k).getLabel());
 				}
-				pw.println();//Pour sauter la ligne et garder la forme.
+				pw.println();
 				
 			}
 			pw.close();
@@ -214,25 +241,26 @@ public class Maze implements graph.Graph, graph.Distance{
 		}
 	}
 	
+	/**
+
+	Returns a list of vertices that represents the solution to the maze.
+	The solution is defined as the path from the start vertex to the end vertex that visits all cells in the maze exactly once.
+	@return a List of vertices that represents the solution to the maze
+	@throws Exception if there is an error finding the solution
+	*/
 	public List<Vertex> getSolution() throws Exception{
-			
-		//List de tous les sommets
-		List<Vertex> sommets=getAllVertexes();
-		//Instance de ShortestPath
+		List<Vertex> sommets = getAllVertexes();
 		ShortestPaths sP = new ShortestPathsImpl(sommets);
-		//Instance de ProcessedVertexes
 		ProcessedVertexes pV= new ProcessedVertexesImpl(getLength()*getWidth());
-		//Instance de MinDistance
 		MinDistance mD = new MinDistanceImpl(sommets);
-		//casting de maze comme Distance
+		//casting maze as Distance
 		Distance distance=(Distance) this;
-		//Casting de maze comme graph
+		//Casting maze as a Graph
 		Graph graph = (Graph) this;
 		
-		//Recherche du sommet de depart et du sommet d'arrivée:
-		Vertex startVertex=sommets.get(0);// Cette valeur est arbitraire apres on cherchera le vrai startVertex.
-		Vertex endVertex=sommets.get(1);// Cette valeur est arbitraire apres on cherchera le vrai endVertex.
-		//Je n'ai pas fais de try car j'ai déja programmer une exception qui se lève si le fichier ne contient pas un unique D et un unique A.
+		//Searching for the startVertex and the endVertex.
+		Vertex startVertex=sommets.get(0);
+		Vertex endVertex=sommets.get(1);
 		boolean sFlag=false, eFlag = false;
 		int k=0;
 		while (!(sFlag & eFlag) & k<sommets.size()) {
@@ -247,11 +275,9 @@ public class Maze implements graph.Graph, graph.Distance{
 			}
 			k++;  
 		}
-			
-		//Application de l'algorithme de Dijkstra
-		sP = Dijkstra.dijkstra(graph,startVertex, endVertex, pV, mD, distance, sP);
 		
-		//Extraction du chemin solution.
+		sP = Dijkstra.dijkstra(graph,startVertex, endVertex, pV, mD, distance, sP);
+		//Extracting the solution list. 
 		List<Vertex> cheminSolution = sP.getShortestPath(endVertex);
 		return cheminSolution;
 			

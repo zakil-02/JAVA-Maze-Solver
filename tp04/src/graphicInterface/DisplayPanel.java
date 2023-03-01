@@ -49,7 +49,7 @@ public class DisplayPanel extends JPanel implements MouseListener{
 	/**
 	 * Invoked when a mouse button is pressed on the component, and if a box is pressed, it will change her type depending on the 
 	 * selected type in the model.
-	 * @param e the MouseEvent representing the button press
+	 * @param e the MouseEvent representing the mouse press.
 	 */
 	public void mousePressed(MouseEvent e) {
 		 int w= mainApp.getMazeAppModel().getWidth();

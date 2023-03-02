@@ -51,8 +51,11 @@ public class ShowPathButton extends JButton implements ActionListener {
 			if (compteurArrivals>1) {
 				throw new IOException("Multiple destinations have been received");
 			}
-			//We try to solve it then.
-			mainApp.getMazeAppModel().solve();
+			//We try to solve it then if the solution is not already calculated and displayed.
+			if (!mainApp.getMazeAppModel().isSolutionDisplayed()) {
+				mainApp.getMazeAppModel().solve();
+			}
+			
 			
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(mainApp, "Error!\n" + ex.getMessage(), " ErrorMessage ", JOptionPane.WARNING_MESSAGE);

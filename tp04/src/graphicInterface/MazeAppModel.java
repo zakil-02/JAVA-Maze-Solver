@@ -19,6 +19,7 @@ public class MazeAppModel {
 	private int width;
 	private int height;
 	private String selectedType;
+	private boolean solutionDisplayed=false;
 	private BoxShape[][] boxes;
 	private int nArrivals=0;
 	private int nDepartures=0;
@@ -192,8 +193,11 @@ public class MazeAppModel {
 		//Initializing the maze object with the actualMaze.
 		maze.initFromTextFile("processingData/ActualMaze");
 		
-		//Getting the solution path, and this sublist is to remove the departure and the arrival from the path so that we keep their color displayed.
-		List<Vertex> cheminSolution = maze.getSolution().subList(1, maze.getSolution().size()-1);
+		//Getting the solution path including the arrival and the departure.
+		List<Vertex> cheminSolution = maze.getSolution();
+		//This sublist is to remove the departure and the arrival from the path so that we keep their color displayed.
+		if (maze.getSolution().size()>1) {cheminSolution=cheminSolution.subList(1, maze.getSolution().size()-1);}
+		else {throw new Exception("No path found");}
 		
 		for (Vertex vertex:cheminSolution) {
 			MazeBox mb=(MazeBox) vertex;
@@ -203,6 +207,8 @@ public class MazeAppModel {
 			BoxShape bs=boxes[i][j];
 			boxes[i][j]= new SolutionShape(bs.getX(), bs.getY());
 		}
+		//We set solution as displayed.
+		setSolutionDisplayed(true);
 		stateChanges();
 	}
 	
@@ -231,6 +237,7 @@ public class MazeAppModel {
 		}
         this.nDepartures=0;
         this.nArrivals=0;
+        this.solutionDisplayed=false; //The solution is not displayed anymore.
 		stateChanges();
 	}
 	
@@ -287,6 +294,12 @@ public class MazeAppModel {
 
 	public void setnArrivals(int nArrivals) {
 		this.nArrivals = nArrivals;
+	}
+	public boolean isSolutionDisplayed() {
+		return solutionDisplayed;
+	}
+	public void setSolutionDisplayed(boolean solutionDisplayed) {
+		this.solutionDisplayed = solutionDisplayed;
 	}
 	
 	

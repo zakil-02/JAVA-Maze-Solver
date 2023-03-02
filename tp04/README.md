@@ -3,3 +3,10 @@
 
 ## Document usage and functionality
 To run the graphic application, you should run the MainApp.java file ("\tp04\src\graphicInterface\MainApp.java").
+In the menu bar, you will find "?" item which will lead you to "help". I tried to explain how to handle the application.
+
+1. Run the MainApp.java file, the application will display;
+2. To configure your maze, there is two ways :
+   ## the first is to import it from a text file 
+    To do so, you should click on File menu item at the top, and then you will find "import from file" button. A choice dialog window will be displayed, and will allow you to select your file.
+    The file must contain a valid maze, 

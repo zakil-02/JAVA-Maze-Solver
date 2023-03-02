@@ -5,12 +5,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+/**
+ * A custom button that displays "OK" and ask the model to change the dimensions by 
+ * inputs of the two fields when it is clicked.
+ * This class extends the JButton class and implements the ActionListener interface.
+ */
 public class OkButton extends JButton implements ActionListener{
 	
 	private MainApp mainApp;
 	private static final long serialVersionUID = 1L;
 	/**
-     * Constructs a new OkButton object with a reference to the given MainApp object.
+     * Constructs a new OkButton object with the label "OK" and a reference to the given MainApp object.
      * It adds ActionListener to it and set the back and the fore ground in the specified colors.
      * @param mainApp the MainApp object that this button is associated with.
      */

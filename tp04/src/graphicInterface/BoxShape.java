@@ -3,9 +3,9 @@ import java.awt.*;
 
 /**
 
-A class that extends the Polygon class to create an hexagonal box shape.
+An abstract class that extends the Polygon class to create an hexagonal box shape.
 */
-public class BoxShape extends Polygon {
+public abstract class BoxShape extends Polygon {
 	private static final long serialVersionUID = 1L;
 	//I fixed the size of the shape
 	private static final int size=30;

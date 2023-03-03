@@ -21,8 +21,8 @@ public class helpItem extends JMenuItem{
             JOptionPane.showMessageDialog(mainApp,
                     "You can give the maze you want to solve in two different ways : \n    -import it as a text file using these keys 'E', 'D', 'A', 'W'.\n"
                     + "    -draw it manually in the display panel, you should select the type of the box in the configuration panel and click on the boxes you want to be the type selected.\n"
-                    + "Once you finish representing your maze, click on showShortestPath to show the solution\n"
-                    + "Then you can save the solution into a text file using the menuBar/File/save item"
+                    + "Once you finish representing your maze, click on ShortestPath button to show the solution\n"
+                    + "Then you can save the solution into a text file using the menuBar/File/save item\n"
                     + "Enjoy !!\n"
                     + "Rq: Telecom Paris is the best school ever ",
                     "How to use the interface",

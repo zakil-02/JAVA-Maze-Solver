@@ -19,6 +19,9 @@ public class FileMenu extends JMenu{
 		this.mainApp=mainApp;
 		saveItem= new SaveItem(mainApp);
 		importItem = new ImportItem(mainApp);
+		
+		add(importItem);
+		add(saveItem);
 	}
 
 	//Getters

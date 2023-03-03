@@ -18,6 +18,8 @@ public class HelpMenu extends JMenu{
 		super("?");
 		this.mainApp=mainApp;
 		hItem = new helpItem(mainApp);
+		
+		add(hItem);
 	}
 	
 	

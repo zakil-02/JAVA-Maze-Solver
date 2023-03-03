@@ -24,6 +24,8 @@ public class OptionMenu extends JMenu{
 		quitItem = new QuitItem(mainApp);
 		resetItem = new ResetItem(mainApp);
 		
+		add(resetItem);
+		add(quitItem);
 	}
 	//Getters
 	public MainApp getMainApp() {

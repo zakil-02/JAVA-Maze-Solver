@@ -14,7 +14,7 @@ This project is about an hexagonal maze solver. It is an application that allows
 
 
 ## Functionality
-To run the graphic application, you should run the MainApp.java file ("\tp04\src\graphicInterface\MainApp.java").
+### `To run the graphic application, you should run the MainApp.java file ("\tp04\src\graphicInterface\MainApp.java").`
 In the menu bar, you will find "?" item which will lead you to "help". I tried to explain how to handle the application.
 
 1. Run the MainApp.java file, the application will be displayed;

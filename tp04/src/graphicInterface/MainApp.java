@@ -72,6 +72,7 @@ public class MainApp extends JFrame implements ChangeListener{
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		mainPanel.notifyForUpdate();
+		menuBar.notifyForUpdate();
 	}
 
 }

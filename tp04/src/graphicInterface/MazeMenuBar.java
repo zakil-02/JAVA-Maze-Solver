@@ -94,6 +94,11 @@ public class MazeMenuBar extends JMenuBar{
             }
         });
 	}
+	public void notifyForUpdate() {
+		fileMenu.repaint();
+		optionMenu.repaint();
+		helpMenu.repaint();
+	}
 	public MainApp getMainApp() {
 		return mainApp;
 	}

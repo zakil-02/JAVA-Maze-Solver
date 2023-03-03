@@ -19,6 +19,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\akilh\OneDrive\Bureau\TELECOM 1A\INF-103-JAVA\inf103_labyrinthe_qui marche"/>
 			<item value="C:\Users\akilh\eclipse-workspace\ihm"/>
 			<item value="C:\Users\akilh\eclipse-workspace"/>
 			<item value="C:\Users\akilh\eclipse-workspace\tp04"/>

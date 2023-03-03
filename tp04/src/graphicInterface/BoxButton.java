@@ -3,38 +3,35 @@ package graphicInterface;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
+/**
+ * A custom button class that represent the box buttons in the configuration panel.
+ */
 public class BoxButton extends JButton{
 	private static final long serialVersionUID = 1L;
-	private String boxLabel;
+	private final String boxLabel;
+	private final Color color;
 	private boolean selected;
-	
-	public BoxButton(String boxLabel) {
+	/**
+	 * Constructs a new BoxButton with the specified label and background color.
+	 * 
+	 * @param boxLabel the label to be displayed on the button
+	 * @param color the background color of the button
+	 */
+	public BoxButton(String boxLabel, Color color) {
 		super(boxLabel);
 		this.boxLabel=boxLabel;
 		this.selected=false;
-		//On donne une taille pour les bouttons
+		//Specify buttons size
 		this.setPreferredSize(new Dimension(80,50));
-		//On va choisir une couleur pour chaque boutton.
-		switch (this.boxLabel) {
-		
-			case("Arrival"):
-				this.setBackground(Color.ORANGE);
-				break;
-			case("Departure"):
-				this.setBackground(Color.BLUE);
-				break;
-			case("Empty"):
-				this.setBackground(Color.PINK);
-				break;
-			
-			case("Wall"):
-				this.setBackground(Color.DARK_GRAY);
-				this.setForeground(Color.WHITE);
-		}
+		//Specify button color
+		this.color=color;
+		this.setBackground(color);
+		//Set the text in white if the background is in darkGray
+		if (color.equals(Color.DARK_GRAY)) {this.setForeground(Color.WHITE);}
 	}
+	
+	//Getters and setters
 	public final boolean isSelected() {
 		return selected;
 	}
@@ -46,6 +43,9 @@ public class BoxButton extends JButton{
 	}
 	public final String getBoxLabel() {
 		return boxLabel;
+	}
+	public Color getColor() {
+		return color;
 	}
 
 }

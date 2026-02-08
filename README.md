@@ -1,72 +1,186 @@
-![Alt text](tp04/logoGUI.png)
-# Maze Solver by Zakaria AKIL
-## Table of Contents
+# 🎮 Hexagonal Maze Solver
 
-- [Project description](#Project_description)
-- [Functionality](#Functionality)
-- [Files guide](#Files_guide)
-- [Examples](#examples)
-## Project description
-The project is located in the git repository as 
-This project is about an hexagonal maze solver. It is an application that allows users to solve the mazes they create themselves. I started with the algorithmic part, in which I applied Dijkstra algorithm to find the shortest path in a graph between two nodes. Then I switched to work on the GUI of my application. I started by designing a GUI model with Adobe Photoshop ("tp04/InterfaceGraphiqueModel01") to reach, as well as a logo for my application ("tp04/logoGUI"). In the next parts of this README file I am going to specify fils to execute and to explain how it generally works.
+A modern, interactive hexagonal maze solver with a beautiful UI, built with Java 21 and FlatLaf.
 
-![Alt text](tp04/InterfaceGraphiqueModel01.png "Graphic interface Model")
+![Version](https://img.shields.io/badge/version-2.0.0-blue)
+![Java](https://img.shields.io/badge/Java-21-orange)
+![License](https://img.shields.io/badge/license-MIT-green)
 
+**Author:** Zakaria Akil
 
-## Functionality
-### `To run the graphic application, you should run the MainApp.java file ("\tp04\src\graphicInterface\MainApp.java").`
-In the menu bar, you will find "?" item which will lead you to "help". I tried to explain how to handle the application.
+---
 
-1. Run the MainApp.java file, the application will be displayed;
-2. To configure your maze, there is two ways :
-### Import it from a text file
+## ✨ Features
 
-To do so, you should click on File menu item at the top, and then you will find "import from file" button. A choice dialog window will be displayed, and will allow you to select your file.\
-The file must contain a valid maze, that's mean that the maze should be constructed by using only : "D" for departure, "A" for arrival, "E" for empty, and "W" for wall.\
-A valid maze contains only one departure and one arrival.\
-Example of a valid maze : \
-    `WWWWEW`\
-    `EDEEEE`\
-    `WWEWWE`\
-    `EEEEEE`\
-    `AEEEEW`
-### Draw it manually on the display panel\
-- Select the dimensions in the configuration panel;
-- Select the type, and click on the boxes you want to be the type selected. 
-3. As your maze is configured, press ShortestPath button in the configuration panel to see the solution;
-4. You can save the solution in a text file using save item in File menu.
-5. If you want to try with another maze you should reset the maze, pressing the ok button after choosing the wanted dimensions.
+- 🎨 **Modern Dark/Light UI** - Beautiful FlatLaf theme with smooth animations
+- 🔷 **Hexagonal Grid** - Unique hexagonal maze layout with perfect alignment
+- 🧠 **Dijkstra's Algorithm** - Find the shortest path efficiently
+- 🖱️ **Interactive Drawing** - Click and drag to create your maze
+- 📊 **Real-time Statistics** - See path distance, nodes explored, and execution time
+- 💾 **Import/Export** - Save and load mazes from files
+- ⌨️ **Keyboard Shortcuts** - Quick access to common actions
+- 🎯 **Dynamic Zoom** - Auto-scales based on maze dimensions (5-30)
 
-## Files guide
-There are 3 files to run (that contain a main method) : \
-    1. tp04\src\MainPackage\MainTest : It is just a classe to test the ability to initiate from a file and save to file.\
-    2. tp04\src\MainPackage\Main : This class will show the solution in the consol.\
+---
 
-tp04\data : contain two text files we use them in the MainTest class
-tp04\processingData : contain a text file that is always used to find the solution for the maze the user want to solve with the application. This text file contains the actual maze the application is handling.\
-    
-## Example
-    input : 
-    EEEEEWEEEE
-    EWEEEWWEEE
-    EEEEWAWEEE
-    WEEEWWEEEE
-    EEEEEWEEEE
-    EEEEWEEEEE
-    EWWEEEWEEE
-    EEEEEEEEEE
-    EEEEEEEEED
+## 🚀 Quick Start
 
-    output : 
+### Prerequisites
 
-    E E E E E W E E E E
-     E W E * * W W E E E
-    E E E * W A W E E E
-     W E * E W W E E E E 
-    E E E * E W E E E E
-     E E E * W E E E E E
-    E W W E * E W E E E 
-     E E E E * * * * * E
-    E E E E E E E E E D
+- Java 21 or higher
+- Maven 3.6+
 
-    The solution is graphique, but you can save it in a text file !
+### Installation & Run
+
+```bash
+# Navigate to the enhanced version
+cd maze-solver-enhanced
+
+# Build the project
+mvn clean package
+
+# Run the application
+./run.sh
+
+# Or directly
+java -jar target/maze-solver-2.0.0.jar
+```
+
+---
+
+## 🎮 How to Use
+
+### Creating a Maze
+
+1. **Set Dimensions**
+   - Adjust width and height (5-30)
+   - Click "Apply" to create new maze
+
+2. **Draw Your Maze**
+   - Select a tool: Start, End, Wall, or Empty
+   - Click on hexagons to place them
+   - Drag to draw multiple cells
+
+3. **Find the Path**
+   - Click "Find Shortest Path"
+   - View statistics in the status bar
+
+4. **Save & Load**
+   - File → Export Maze to save
+   - File → Import Maze to load
+
+### Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| `Ctrl+O` | Import maze |
+| `Ctrl+S` | Export maze |
+| `Ctrl+L` | Clear solution |
+| `Ctrl+R` | Reset maze |
+| `F1` | Show help |
+| `Ctrl+Q` | Exit |
+
+---
+
+## 🏗️ Project Structure
+
+```
+JAVA-Maze-Solver/
+├── maze-solver-enhanced/          # Modern version (v2.0)
+│   ├── src/main/java/com/zakaria/mazesolver/
+│   │   ├── algorithm/            # Path finding algorithms
+│   │   ├── model/                # Data models
+│   │   └── ui/                   # User interface
+│   ├── pom.xml                   # Maven configuration
+│   ├── run.sh                    # Quick start script
+│   └── README.md                 # Detailed documentation
+└── tp04/                         # Original version (preserved)
+```
+
+---
+
+## 🎨 Technologies
+
+- **Java 21** - Modern Java with records and pattern matching
+- **FlatLaf 3.5.4** - Modern Swing look and feel
+- **MigLayout** - Powerful layout manager
+- **Maven** - Build and dependency management
+- **JUnit 5** - Testing framework
+
+---
+
+## 🔧 Building from Source
+
+```bash
+# Clone the repository
+git clone https://github.com/zakil-02/JAVA-Maze-Solver.git
+cd JAVA-Maze-Solver/maze-solver-enhanced
+
+# Build
+mvn clean package
+
+# Run
+java -jar target/maze-solver-2.0.0.jar
+```
+
+---
+
+## 🎯 Algorithm
+
+The application uses **Dijkstra's shortest path algorithm**:
+
+- **Time Complexity**: O((V + E) log V)
+- **Space Complexity**: O(V)
+- **Optimal**: Always finds the shortest path
+- **Complete**: Finds a path if one exists
+
+---
+
+## 🌟 Key Improvements (v2.0)
+
+### Code Quality
+- ✅ Modern Java 21 features (records, pattern matching)
+- ✅ Professional package structure
+- ✅ Maven build system
+- ✅ Clean architecture (MVC pattern)
+
+### UI/UX
+- ✅ Modern FlatLaf dark/light themes
+- ✅ Smooth animations and transitions
+- ✅ Hover effects and visual feedback
+- ✅ Theme-aware colors
+- ✅ Dynamic zoom based on dimensions
+- ✅ Perfect hexagonal grid alignment
+
+### Features
+- ✅ Theme toggle with animation
+- ✅ Performance statistics display
+- ✅ Keyboard shortcuts
+- ✅ Import/Export functionality
+- ✅ Help system
+
+---
+
+## 📝 License
+
+MIT License - feel free to use and modify!
+
+---
+
+## 👤 Author
+
+**Zakaria Akil**
+- GitHub: [@zakil-02](https://github.com/zakil-02)
+- Email: zakaria.akil.2002@gmail.com
+
+---
+
+## 🙏 Acknowledgments
+
+- FlatLaf for the amazing UI framework
+- Java Swing community
+- Original algorithm implementation
+
+---
+
+**Enjoy solving mazes! 🎮**

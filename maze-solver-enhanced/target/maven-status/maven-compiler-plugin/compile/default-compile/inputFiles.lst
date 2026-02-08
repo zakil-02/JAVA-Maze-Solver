@@ -1,0 +1,16 @@
+/Users/akilz/Personal-projects/JAVA-Maze-Solver/maze-solver-enhanced/src/main/java/com/zakaria/mazesolver/algorithm/DijkstraPathFinder.java
+/Users/akilz/Personal-projects/JAVA-Maze-Solver/maze-solver-enhanced/src/main/java/com/zakaria/mazesolver/algorithm/Distance.java
+/Users/akilz/Personal-projects/JAVA-Maze-Solver/maze-solver-enhanced/src/main/java/com/zakaria/mazesolver/algorithm/Graph.java
+/Users/akilz/Personal-projects/JAVA-Maze-Solver/maze-solver-enhanced/src/main/java/com/zakaria/mazesolver/algorithm/PathFinder.java
+/Users/akilz/Personal-projects/JAVA-Maze-Solver/maze-solver-enhanced/src/main/java/com/zakaria/mazesolver/algorithm/PathNotFoundException.java
+/Users/akilz/Personal-projects/JAVA-Maze-Solver/maze-solver-enhanced/src/main/java/com/zakaria/mazesolver/algorithm/PathResult.java
+/Users/akilz/Personal-projects/JAVA-Maze-Solver/maze-solver-enhanced/src/main/java/com/zakaria/mazesolver/algorithm/Vertex.java
+/Users/akilz/Personal-projects/JAVA-Maze-Solver/maze-solver-enhanced/src/main/java/com/zakaria/mazesolver/model/BoxType.java
+/Users/akilz/Personal-projects/JAVA-Maze-Solver/maze-solver-enhanced/src/main/java/com/zakaria/mazesolver/model/Maze.java
+/Users/akilz/Personal-projects/JAVA-Maze-Solver/maze-solver-enhanced/src/main/java/com/zakaria/mazesolver/model/MazeBox.java
+/Users/akilz/Personal-projects/JAVA-Maze-Solver/maze-solver-enhanced/src/main/java/com/zakaria/mazesolver/ui/ControlPanel.java
+/Users/akilz/Personal-projects/JAVA-Maze-Solver/maze-solver-enhanced/src/main/java/com/zakaria/mazesolver/ui/MainFrame.java
+/Users/akilz/Personal-projects/JAVA-Maze-Solver/maze-solver-enhanced/src/main/java/com/zakaria/mazesolver/ui/MazeMenuBar.java
+/Users/akilz/Personal-projects/JAVA-Maze-Solver/maze-solver-enhanced/src/main/java/com/zakaria/mazesolver/ui/MazePanel.java
+/Users/akilz/Personal-projects/JAVA-Maze-Solver/maze-solver-enhanced/src/main/java/com/zakaria/mazesolver/ui/MazeSolverApp.java
+/Users/akilz/Personal-projects/JAVA-Maze-Solver/maze-solver-enhanced/src/main/java/com/zakaria/mazesolver/ui/StatusPanel.java

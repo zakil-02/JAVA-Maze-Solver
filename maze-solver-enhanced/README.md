@@ -4,6 +4,18 @@ Modern hexagonal maze solver with beautiful UI.
 
 ## Quick Start
 
+### macOS Desktop App (Recommended)
+
+```bash
+# Create the macOS application
+./create-mac-app.sh
+
+# Install: Drag "Maze Solver.app" to Applications folder
+# Or double-click to run directly
+```
+
+### Run from JAR
+
 ```bash
 # Build
 mvn clean package

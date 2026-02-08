@@ -30,7 +30,23 @@ A modern, interactive hexagonal maze solver with a beautiful UI, built with Java
 - Java 21 or higher
 - Maven 3.6+
 
-### Installation & Run
+### Option 1: macOS Desktop App (Recommended for Mac users)
+
+```bash
+# Navigate to the enhanced version
+cd maze-solver-enhanced
+
+# Create the macOS application
+./create-mac-app.sh
+
+# Install the app
+# Drag "Maze Solver.app" to your Applications folder
+# Or double-click to run directly
+```
+
+**Note:** On first run, macOS may block the app. Right-click → Open, or go to System Settings → Privacy & Security → Allow.
+
+### Option 2: Run from JAR
 
 ```bash
 # Navigate to the enhanced version
@@ -110,6 +126,22 @@ JAVA-Maze-Solver/
 ---
 
 ## 🔧 Building from Source
+
+### Option 1: Create macOS Desktop App
+
+```bash
+# Clone the repository
+git clone https://github.com/zakil-02/JAVA-Maze-Solver.git
+cd JAVA-Maze-Solver/maze-solver-enhanced
+
+# Create the macOS application
+./create-mac-app.sh
+
+# The app will be created as "Maze Solver.app"
+# Drag it to your Applications folder or double-click to run
+```
+
+### Option 2: Build JAR
 
 ```bash
 # Clone the repository
